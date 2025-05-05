@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppRouter from './routes/AppRouter'; // ✅ 라우터를 가져옴
+import { HashRouter } from 'react-router-dom';
+import AppRouter from './routes/AppRouter';
 import './index.css';
 
-// 앱을 렌더링할 DOM 요소를 찾고, React.StrictMode로 감싸서 앱을 렌더링
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement); // createRoot 사용
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
 
 root.render(
   <React.StrictMode>
-    <AppRouter />
+    <HashRouter>
+      <AppRouter />
+    </HashRouter>
   </React.StrictMode>
 );

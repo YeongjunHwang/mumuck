@@ -1,0 +1,39 @@
+.intro-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;      /* 수직 중앙 */
+    align-items: center;          /* 수평 중앙 */
+    min-height: calc(100vh - 80px); /* 전체 화면 높이에서 푸터 높이 제외 */
+    text-align: center;
+    color: #eee;
+    padding: 0 20px;
+  }
+  
+  .intro-box h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: #ffffff;
+  }
+  
+  .intro-box p {
+    font-size: 15px;
+    color: #ddd;
+  }
+  
+  .start-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    background-color: #f88c6c;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .start-btn:hover {
+    background-color: #ff9f7c;
+  }
+  

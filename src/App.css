@@ -1,15 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
 body {
   margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   background-color: #eee;
 }
 
 .app-wrap {
   max-width: 480px;
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background-color: #253238;
@@ -21,6 +19,6 @@ body {
 .app-main {
   flex: 1;
   padding: 20px;
-  padding-top: 50px; /* Header 겹침 방지 */
+  padding-top: 60px; /* Header 겹침 방지 */
   box-sizing: border-box;
 }

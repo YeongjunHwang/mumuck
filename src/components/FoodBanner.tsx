@@ -10,9 +10,9 @@ const FoodBanner = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const slides = [
-        { img: `${process.env.PUBLIC_URL}/images/banners/kyochon.png` },
-        { img: `${process.env.PUBLIC_URL}/images/banners/domino.png` },
-        { img: `${process.env.PUBLIC_URL}/images/banners/huwon.png` },
+        { img: 'https://raw.githubusercontent.com/YeongjunHwang/mumuck/main/public/images/banners/kyochon.png' },
+        { img: 'https://raw.githubusercontent.com/YeongjunHwang/mumuck/main/public/images/banners//domino.png' },
+        { img: 'https://raw.githubusercontent.com/YeongjunHwang/mumuck/main/public/images/banners/huwon.png' },
     ];
 
     return (

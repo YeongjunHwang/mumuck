@@ -9,25 +9,25 @@
   position: relative; /* 내부 absolute 기준 */
 }
 
-/* 헤더는 absolute로 고정, 좌우 정렬용 */
 .app-header {
   position: absolute;
-  top: 16px;
+  top: 10px;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 16px;
-  font-size: 20px;
-  font-weight: 600;
   color: #eee;
   z-index: 10;
   box-sizing: border-box;
+  border-bottom: 2px solid #444;
+  padding-bottom: 5px;
 }
 
 .logo {
-  font-size: 20px;
+  font-size: 25px;
+  font-family: 'Do Hyeon', sans-serif;
   color: white;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
 }

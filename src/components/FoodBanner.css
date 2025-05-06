@@ -1,9 +1,8 @@
 .banner-wrapper {
   position: relative;
-  width: 100%;
-  max-width: 480px;
+  width: calc(100% + 40px); /* 양쪽으로 확장 */
+  margin: 0 -12px;           /* 부모(.app-main)의 padding과 중화시킴 */
   height: 160px;
-  margin: 0 auto;
   border-radius: 16px;
   overflow: hidden;
 }

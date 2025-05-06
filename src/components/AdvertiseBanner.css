@@ -2,7 +2,7 @@
     position: relative;
     width: calc(100% + 40px); /* 양옆 확장 */
     margin: 15px -12px 0;     /* 중화시키고 위 여백만 줌 */
-    height: 180px;            /* 광고 배너 높이 조정 */
+    height: 170px;            /* 광고 배너 높이 조정 */
     overflow: hidden;
     border-radius: 16px;
   }

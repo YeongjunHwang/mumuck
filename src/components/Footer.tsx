@@ -17,7 +17,7 @@ interface TabItem {
 
 const tabs: TabItem[] = [
   { label: '홈', icon: MdHome, path: '/' },
-  { label: '추천', icon: MdRestaurantMenu, path: '/select' },
+  { label: '메뉴 추천 게임', icon: MdRestaurantMenu, path: '/game' },
   { label: '주변 맛집', icon: MdMap, path: '/map' },
   { label: '마이페이지', icon: MdPerson, path: '/settings' },
 ];

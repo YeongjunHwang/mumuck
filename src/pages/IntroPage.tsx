@@ -1,20 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './IntroPage.css';
+import { MdFastfood } from 'react-icons/md';
 import FoodBanner from '../components/FoodBanner';
-
+import './IntroPage.css';
 
 const IntroPage: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="intro-box">
+    <div className="intro-page">
       <FoodBanner />
-      <h2>🍽️ 오늘 뭐 먹지?</h2>
-      <p>당신의 메뉴 선택을 도와드릴게요!</p>
-      <button className="start-btn" onClick={() => navigate('/select')}>
-        추천받기 시작
-      </button>
+      <div className="intro-content">
+        <MdFastfood className="intro-icon" />
+        <h1>오늘 뭐 먹지?</h1>
+        <p className="subtitle">매일 반복되는 고민, 저희가 해결해드릴게요</p>
+        <button className="start-btn" onClick={() => navigate('/select')}>
+          추천받기 시작
+        </button>
+      </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import {
   MdHome,
   MdRestaurantMenu,
   MdMap,
-  MdPerson, // ✅ 마이페이지용 아이콘
+  MdPerson,
 } from 'react-icons/md';
 import { IconType } from 'react-icons';
 import './Footer.css';

@@ -1,36 +1,65 @@
 .intro-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 70px;       /* 상단 여백 */
-    padding-bottom: 60px;    /* 하단 푸터 대비 여백 */
-    color: white;
-    min-height: 100vh;
-    box-sizing: border-box;
-  }
-
-.intro-content {
-  margin-top: 24px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px 80px;
+  background-color: #253238;
+  color: #ffffff;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-.intro-content h1 {
-  font-size: 24px;
+.intro-content {
+  text-align: center;
+  margin-top: 32px;
+  animation: fadeInUp 0.4s ease;
+}
+
+.intro-icon {
+  font-size: 48px;
+  color: #f88c6c;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
   margin-bottom: 10px;
+  color: #fefefe;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+.subtitle {
+  font-size: 15px;
+  color: #cccccc;
+  margin-bottom: 32px;
 }
 
 .start-btn {
-  margin-top: 16px;
-  padding: 12px 24px;
+  padding: 14px 28px;
   font-size: 16px;
-  background-color: #f06b4f;
-  color: white;
+  font-weight: 600;
+  background-color: #f88c6c;
+  color: #fff;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .start-btn:hover {
-  background-color: #f88c6c;
+  background-color: #fa9d82;
+  transform: translateY(-1px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

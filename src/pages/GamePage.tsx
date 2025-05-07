@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { MdDirectionsRun } from 'react-icons/md';
+import Lottie from 'lottie-react';
+import catRun from '../assets/cat-run.json'; // 경로와 파일명 확인
 import './GamePage.css';
 
 interface StepNode {
@@ -71,7 +72,7 @@ const GamePage: React.FC = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [moveHero]);
-  
+
   useEffect(() => {
     let startX = 0;
     const handleTouchStart = (e: TouchEvent) => {
@@ -96,7 +97,7 @@ const GamePage: React.FC = () => {
     if (result) return;
     intervalRef.current = window.setInterval(() => {
       setObstacleY((prev) => {
-        const next = prev + 5;
+        const next = prev + 10;
         if (next >= 420) {
           const selected = currentOptions[heroIndex];
           if (!currentNode.next || !currentNode.next[selected]) {
@@ -119,17 +120,19 @@ const GamePage: React.FC = () => {
     <div className="game-container">
       {result && <div className="result-box">{result}</div>}
 
-      <div className="falling-options-wrapper" style={{ top: obstacleY }}>
-        {currentOptions.map((opt, idx) => (
-          <div className="falling-option" key={idx}>{opt}</div>
-        ))}
-      </div>
+      <div
+  className="falling-options-wrapper"
+  style={{ transform: `translateY(${obstacleY}px)` }}
+>
+  {currentOptions.map((opt, idx) => (
+    <div className="falling-option" key={idx}>{opt}</div>
+  ))}
+</div>
 
       <div
-        className="hero"
-        style={{ left: getHeroLeftByIndex(heroIndex, currentOptions.length) }}
+        className="hero" style={{ left: getHeroLeftByIndex(heroIndex, currentOptions.length) }}
       >
-        <MdDirectionsRun className="hero-icon" />
+        <Lottie animationData={catRun} loop style={{ width: 150, height: 150 }} />
       </div>
     </div>
   );

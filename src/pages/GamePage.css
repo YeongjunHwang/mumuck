@@ -41,6 +41,10 @@
   z-index: 1000;
 }
 
+.highlight {
+  color: #ffda66; /* 트렌디한 밝은 노랑 추천 */
+  font-weight: bold;
+}
 
 .falling-options-wrapper {
   position: absolute;

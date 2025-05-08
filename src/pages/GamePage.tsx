@@ -177,7 +177,10 @@ const GamePage: React.FC = () => {
           <div className="countdown-overlay">
             <div className="countdown-number">{countdown > 0 ? countdown : '시작!'}</div>
           </div>
-          <div className="touch-guide">방향키 또는 화면 좌우를 터치로<br />고양이를 움직여보세요!</div>
+          <div className="touch-guide">
+            <span className="highlight">방향키</span> 또는 <span className="highlight">터치</span>로
+            고양이를 좌우로 움직여보세요!
+          </div>
         </>
       )}
 

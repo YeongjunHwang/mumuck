@@ -5,6 +5,9 @@ import IntroPage from '../pages/IntroPage';
 import SelectPage from '../pages/SelectPage';
 import GamePage from '../pages/GamePage';
 import ResultPage from '../pages/ResultPage';
+import MyPage from '../pages/MyPage';
+import PrivacyPage from '../pages/PrivacyPage';
+
 
 const AppRouter = () => {
   return (
@@ -14,6 +17,10 @@ const AppRouter = () => {
         <Route path="game" element={<GamePage />} />
         <Route path="select" element={<SelectPage />} />
         <Route path="result" element={<ResultPage />} />
+        <Route path="mypage" element={<MyPage />} />
+        <Route path="privacy" element={<PrivacyPage />} />
+
+
       </Route>
     </Routes>
   );

@@ -1,0 +1,41 @@
+/* MyPage.css */
+.my-page {
+  padding: 20px;
+  color: #eee;
+  font-family: 'Do Hyeon', sans-serif;
+}
+
+.my-page h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.my-page .footer-link {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.my-page .footer-link a {
+  color: #ccc;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.my-page .footer-link a:hover {
+  color: #f88c6c;
+}
+
+.privacy-page {
+  font-size: 14px;
+  padding-top: 24px;
+  position: relative;  /* position 속성 추가 */
+  top: 600px;  /* margin-top 대신 top으로 위치 조정 */
+}
+
+/* 모바일 화면에서 여백 더 줄이기 */
+@media (max-width: 768px) {
+  .privacy-page {
+    top: 520px; /* 모바일에서 위치 더 조정 */
+  }
+}

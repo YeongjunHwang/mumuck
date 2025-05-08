@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mumuck.com",
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
     "@tailwindcss/postcss": "^4.1.5",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
@@ -46,7 +47,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
   }
 }

@@ -4,6 +4,7 @@ import './PrivacyPage.css';
 const PrivacyPage: React.FC = () => {
   return (
     <div className="privacy-page">
+      <br />
       <h1>개인정보처리방침</h1>
 
       <h2>제 1 장. 개인정보의 수집 및 이용 목적</h2>

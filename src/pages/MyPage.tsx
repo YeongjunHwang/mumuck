@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import SiteInfo from '../components/SiteInfo/SiteInfo';
 import './MyPage.css';
 
 interface User {
@@ -70,14 +70,7 @@ const MyPage: React.FC = () => {
           />
         </GoogleOAuthProvider>
       )}
-
-      <div className="privacy-word">
-        <div style={{ marginTop: '40px', textAlign: 'center', fontSize: '14px' }}>
-          <Link to="/privacy" style={{ color: '#ccc', textDecoration: 'underline' }}>
-            개인정보처리방침
-          </Link>
-        </div>
-      </div>
+      <SiteInfo />
     </div>
   );
 };

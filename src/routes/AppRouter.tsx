@@ -21,6 +21,7 @@ const AppRouter = () => {
         <Route path="privacy" element={<PrivacyPage />} />
 
 
+
       </Route>
     </Routes>
   );

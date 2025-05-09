@@ -25,6 +25,18 @@ const MyPage: React.FC = () => {
     }
   }, []);
 
+  // ✅ 인앱 브라우저 감지 → 로그인 시도 전에 안내
+  useEffect(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    const inAppBrowsers = ['kakaotalk', 'instagram', 'fbav', 'line'];
+    const isInApp = inAppBrowsers.some(keyword => ua.includes(keyword));
+    if (isInApp) {
+      alert(
+        '현재 브라우저는 Google 로그인을 지원하지 않습니다.\nChrome이나 Safari 브라우저에서 열어주세요.'
+      );
+    }
+  }, []);
+
   // ✅ 로그인 성공 시 백엔드에 토큰 전송 → 유저 저장
   const handleGoogleSuccess = async (credentialResponse: any) => {
     const idToken = credentialResponse.credential;
@@ -65,7 +77,10 @@ const MyPage: React.FC = () => {
           <div className="google-login-wrapper">
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
-              onError={() => console.log('❌ Google Login Failed')}
+              onError={() => {
+                console.error('❌ Google Login Failed');
+                alert('Google 로그인이 실패했습니다. 다른 브라우저에서 다시 시도해보세요.');
+              }}
             />
           </div>
         </GoogleOAuthProvider>

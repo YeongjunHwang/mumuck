@@ -62,12 +62,12 @@ const MyPage: React.FC = () => {
         </div>
       ) : (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || 'GOOGLE_CLIENT_ID'}>
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={() => {
-              console.log('❌ Google Login Failed');
-            }}
-          />
+          <div className="google-login-wrapper">
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => console.log('❌ Google Login Failed')}
+            />
+          </div>
         </GoogleOAuthProvider>
       )}
       <SiteInfo />

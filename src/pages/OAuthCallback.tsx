@@ -6,8 +6,24 @@ const OAuthCallback = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isInApp = /kakaotalk|naver|instagram|fbav|line/.test(ua);
+
+    if (isInApp) {
+      // 인앱 브라우저인 경우 외부 브라우저로 현재 경로 다시 열기
+      const scheme = window.location.protocol;
+      const host = window.location.host;
+      const path = window.location.pathname;
+      const search = window.location.search;
+      const cleanUrl = `${scheme}//${host}${path}${search}`;
+
+      window.location.href = cleanUrl;
+      return;
+    }
+
     const token = params.get('token');
     console.log('🔍 token:', token);
+    console.log('🌐 current URL:', window.location.href);
 
     if (token) {
       localStorage.setItem('token', token);
@@ -30,6 +46,7 @@ const OAuthCallback = () => {
           navigate('/');
         });
     } else {
+      console.warn('⚠️ URL에 token 파라미터 없음');
       alert('로그인 실패: 토큰 없음');
       navigate('/');
     }

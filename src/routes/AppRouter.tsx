@@ -7,6 +7,7 @@ import GamePage from '../pages/GamePage';
 import ResultPage from '../pages/ResultPage';
 import MyPage from '../pages/MyPage';
 import PrivacyPage from '../pages/PrivacyPage';
+import OAuthCallback from '../pages/OAuthCallback';
 
 
 const AppRouter = () => {
@@ -19,10 +20,8 @@ const AppRouter = () => {
         <Route path="result" element={<ResultPage />} />
         <Route path="mypage" element={<MyPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
-
-
-
       </Route>
+      <Route path="/oauth/callback" element={<OAuthCallback />} />
     </Routes>
   );
 };

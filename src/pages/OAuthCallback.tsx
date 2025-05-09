@@ -10,15 +10,23 @@ const OAuthCallback = () => {
     const isInApp = /kakaotalk|naver|instagram|fbav|line/.test(ua);
 
     if (isInApp) {
-      // 인앱 브라우저인 경우 외부 브라우저로 현재 경로 다시 열기
-      const scheme = window.location.protocol;
-      const host = window.location.host;
-      const path = window.location.pathname;
-      const search = window.location.search;
-      const cleanUrl = `${scheme}//${host}${path}${search}`;
+      const userAgent = navigator.userAgent.toLowerCase();
 
-      window.location.href = cleanUrl;
-      return;
+      // ✅ Android - intent:// 외부 브라우저 강제 열기
+      if (/android/.test(userAgent)) {
+        const scheme = window.location.protocol.replace(':', '');
+        const host = window.location.host;
+        const path = window.location.pathname;
+        const search = window.location.search;
+        window.location.href = `intent://${host}${path}${search}#Intent;scheme=${scheme};package=com.android.chrome;end`;
+        return;
+      }
+
+      // ✅ iOS - 새 창으로 열기 (사파리)
+      if (/iphone|ipad|ipod/.test(userAgent)) {
+        window.open(window.location.href, '_blank');
+        return;
+      }
     }
 
     const token = params.get('token');

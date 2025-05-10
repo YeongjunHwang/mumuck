@@ -213,7 +213,17 @@ const GamePage: React.FC = () => {
               style={{ flex: 1 }}
             >
               <div className="falling-content">
-                <span className="option-label">{opt}</span>
+                <span
+                  className="option-label"
+                  style={{
+                    fontSize:
+                      opt.length >= 6 ? '15px' :
+                        opt.length >= 5 ? '17px' :
+                          '20px'
+                  }}
+                >
+                  {opt}
+                </span>
                 <div className={opt === OTHER_OPTION_LABEL ? 'option-icon-x' : 'option-icon-check'}>
                   <Lottie
                     animationData={opt === OTHER_OPTION_LABEL ? xMark : checkMark}

@@ -7,9 +7,7 @@ import './App.css';
 
 const App: React.FC = () => {
   useEffect(() => {
-    fetch('https://mumuck-server.onrender.com/ping')
-      .then(() => console.log('✅ Render 서버 깨우기 완료'))
-      .catch((err) => console.warn('❌ Render 서버 깨우기 실패:', err));
+    fetch('https://mumuck-server.onrender.com/ping') // 서버 깨우기
   }, []);
 
   return (

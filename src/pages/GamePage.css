@@ -42,7 +42,8 @@
 }
 
 .highlight {
-  color: #ffda66; /* 트렌디한 밝은 노랑 추천 */
+  color: #ffda66;
+  /* 트렌디한 밝은 노랑 추천 */
   font-weight: bold;
 }
 
@@ -63,16 +64,40 @@
 
 .falling-option {
   font-size: 20px;
-  background-color: #f88c6c;
+  background-color: #36c88a;
   color: #fff;
-  padding: 10px 16px;
+  padding: 1px 5px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   flex: 1 1 auto;
   text-align: center;
-  max-width: 30%;
+  max-width: 28%;
   white-space: nowrap;
   font-family: 'Do Hyeon', sans-serif;
+}
+
+.falling-option.option-dimmed {
+  background-color: #ff6b5e;
+  /* 안땡김 전용 색상 */
+}
+
+.falling-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 20px; 
+  gap: 6px;
+}
+
+.option-icon-x,
+.option-icon-check {
+  width: 60px;
+  height: 45px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .hero {
@@ -174,10 +199,12 @@
     transform: scale(0.8);
     opacity: 0;
   }
+
   50% {
     transform: scale(1.2);
     opacity: 1;
   }
+
   100% {
     transform: scale(1);
   }

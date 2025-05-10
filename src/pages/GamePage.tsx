@@ -1,6 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Lottie from 'lottie-react';
 import catRun from '../assets/cat-run.json';
+import checkMark from '../assets/check.json';
+import xMark from '../assets/xmark.json';
+
 import './GamePage.css';
 import tree from '../data/tree';
 
@@ -10,9 +13,16 @@ interface StepNode {
   finalOptions?: string[];
 }
 
+const OTHER_OPTION_LABEL = '다른 메뉴';
+
 const getHeroLeftByIndex = (index: number, total: number) => {
   const base = 100 / total;
-  return base * index + base / 2 + '%';
+  const center = base * index + base / 2;
+
+  if (index === 0) return `calc(${center}% + 5%)`;
+  if (index === total - 1) return `calc(${center}% - 5%)`;
+
+  return `${center}%`;
 };
 
 const getRandomFromArray = (arr: string[], count: number, exclude: Set<string> = new Set()) => {
@@ -106,7 +116,7 @@ const GamePage: React.FC = () => {
 
     const selected = currentOptions[heroIndexRef.current];
 
-    if (finalPoolRef.current.length > 0 && selected === '안땡김') {
+    if (finalPoolRef.current.length > 0 && selected === OTHER_OPTION_LABEL) {
       const exclude = usedOptionsRef.current;
       const remaining = finalPoolRef.current.filter(item => !exclude.has(item));
 
@@ -116,9 +126,9 @@ const GamePage: React.FC = () => {
       }
 
       const options = getRandomFromArray(remaining, 2);
-      options.push('안땡김');
+      options.push(OTHER_OPTION_LABEL);
       const newOptions = getRandomFromArray(options, 3);
-      newOptions.forEach(opt => opt !== '안땡김' && usedOptionsRef.current.add(opt));
+      newOptions.forEach(opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt));
       setCurrentOptions(newOptions);
       setCurrentNode({ options: newOptions });
       setObstacleY(-200);
@@ -128,12 +138,12 @@ const GamePage: React.FC = () => {
 
     const nextNode = currentNode.next?.[selected];
     if (!nextNode) {
-      setResult(selected === '안땡김' ? 'GAME OVER' : `오늘은 ${selected}!`);
+      setResult(selected === OTHER_OPTION_LABEL ? 'GAME OVER' : `오늘은 ${selected}!`);
       return;
     }
 
     if (nextNode.finalOptions) {
-      finalPoolRef.current = nextNode.finalOptions.filter(item => item !== '안땡김');
+      finalPoolRef.current = nextNode.finalOptions.filter(item => item !== OTHER_OPTION_LABEL);
       usedOptionsRef.current.clear();
 
       const exclude = usedOptionsRef.current;
@@ -145,9 +155,9 @@ const GamePage: React.FC = () => {
       }
 
       const options = getRandomFromArray(remaining, 2);
-      options.push('안땡김');
+      options.push(OTHER_OPTION_LABEL);
       const newOptions = getRandomFromArray(options, 3);
-      newOptions.forEach(opt => opt !== '안땡김' && usedOptionsRef.current.add(opt));
+      newOptions.forEach(opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt));
       setCurrentOptions(newOptions);
       setCurrentNode({ options: newOptions });
     } else {
@@ -197,7 +207,23 @@ const GamePage: React.FC = () => {
           style={{ transform: `translateY(${obstacleY}px)` }}
         >
           {currentOptions.map((opt, idx) => (
-            <div className="falling-option" key={idx}>{opt}</div>
+            <div
+              className={`falling-option${opt === OTHER_OPTION_LABEL ? ' option-dimmed' : ''}`}
+              key={idx}
+              style={{ flex: 1 }}
+            >
+              <div className="falling-content">
+                <span className="option-label">{opt}</span>
+                <div className={opt === OTHER_OPTION_LABEL ? 'option-icon-x' : 'option-icon-check'}>
+                  <Lottie
+                    animationData={opt === OTHER_OPTION_LABEL ? xMark : checkMark}
+                    loop={true}
+                    autoplay
+                    style={opt === OTHER_OPTION_LABEL ? { width: '25px', height: '25px' } : { width: '60px', height: '60px' }}
+                  />
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       )}

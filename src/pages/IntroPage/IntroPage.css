@@ -22,9 +22,13 @@
   animation: fadeInUp 1s ease;
 }
 
-.intro-icon {
-  font-size: 28px;
-  color: #FF6B6B;
+.intro-icon-lottie {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  vertical-align: middle;
+  margin-right: 12px;
+  margin-bottom: 5px;
 }
 
 h1 {

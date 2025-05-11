@@ -7,6 +7,8 @@ import UserPage from '../pages/MyPage/UserPage';
 import PrivacyPage from '../pages/MyPage/PrivacyPage';
 import Terms from '../pages/MyPage/TermsPage';
 import OAuthCallback from '../pages/MyPage/OAuthCallback';
+import TierIntro from '../pages/TierPage/TierIntro';
+
 
 
 const AppRouter = () => {
@@ -15,6 +17,7 @@ const AppRouter = () => {
       <Route path="/" element={<App />}>
         <Route index element={<IntroPage />} />
         <Route path="game" element={<GamePage />} />
+        <Route path="TierIntro" element={<TierIntro />} />
         <Route path="mypage" element={<MyPage />} />
          <Route path="/user" element={<UserPage />} />  
         <Route path="privacy" element={<PrivacyPage />} />

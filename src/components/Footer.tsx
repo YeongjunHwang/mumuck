@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import {
   MdHome,
   MdRestaurantMenu,
-  MdMap,
+  MdLeaderboard,
   MdPerson,
 } from 'react-icons/md';
 import { IconType } from 'react-icons';
@@ -18,7 +18,7 @@ interface TabItem {
 const tabs: TabItem[] = [
   { label: '홈', icon: MdHome, path: '/' },
   { label: '메뉴 추천 게임', icon: MdRestaurantMenu, path: '/game' },
-  { label: '주변 맛집', icon: MdMap, path: '/map' },
+  { label: '브랜드 랭킹', icon: MdLeaderboard, path: '/TierIntro' },
   { label: '마이페이지', icon: MdPerson, path: '/mypage' },
 ];
 

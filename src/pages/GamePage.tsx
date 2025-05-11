@@ -32,6 +32,7 @@ const getRandomFromArray = (arr: string[], count: number, exclude: Set<string> =
 };
 
 const GamePage: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
   const [currentNode, setCurrentNode] = useState<StepNode>(tree);
   const [obstacleY, setObstacleY] = useState(-200);
   const [result, setResult] = useState('');
@@ -46,6 +47,13 @@ const GamePage: React.FC = () => {
   const intervalRef = useRef<number | null>(null);
   const finalPoolRef = useRef<string[]>([]);
   const usedOptionsRef = useRef<Set<string>>(new Set());
+
+  // 📱 모바일 리사이즈 대응
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 480);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const moveHero = useCallback((direction: 'left' | 'right') => {
     heroIndexRef.current = direction === 'left'
@@ -188,8 +196,7 @@ const GamePage: React.FC = () => {
             <div className="countdown-number">{countdown > 0 ? countdown : '시작!'}</div>
           </div>
           <div className="touch-guide">
-            <span className="highlight">방향키</span> 또는 <span className="highlight">터치</span>로
-            고양이를 좌우로 움직여보세요!
+            <span className="highlight">방향키</span> 또는 <span className="highlight">터치</span>로 고양이를 좌우로 움직여보세요!
           </div>
         </>
       )}
@@ -202,10 +209,7 @@ const GamePage: React.FC = () => {
       )}
 
       {falling && (
-        <div
-          className={`falling-options-wrapper ${fadeOut ? 'fade-out' : ''}`}
-          style={{ transform: `translateY(${obstacleY}px)` }}
-        >
+        <div className={`falling-options-wrapper ${fadeOut ? 'fade-out' : ''}`} style={{ transform: `translateY(${obstacleY}px)` }}>
           {currentOptions.map((opt, idx) => (
             <div
               className={`falling-option${opt === OTHER_OPTION_LABEL ? ' option-dimmed' : ''}`}
@@ -217,9 +221,13 @@ const GamePage: React.FC = () => {
                   className="option-label"
                   style={{
                     fontSize:
-                      opt.length >= 6 ? '15px' :
-                        opt.length >= 5 ? '17px' :
-                          '20px'
+                      isMobile
+                        ? opt.length >= 6 ? '11px' :
+                          opt.length >= 5 ? '14px' :
+                            '16px'
+                        : opt.length >= 6 ? '15px' :
+                          opt.length >= 5 ? '17px' :
+                            '20px'
                   }}
                 >
                   {opt}
@@ -227,9 +235,13 @@ const GamePage: React.FC = () => {
                 <div className={opt === OTHER_OPTION_LABEL ? 'option-icon-x' : 'option-icon-check'}>
                   <Lottie
                     animationData={opt === OTHER_OPTION_LABEL ? xMark : checkMark}
-                    loop={true}
+                    loop
                     autoplay
-                    style={opt === OTHER_OPTION_LABEL ? { width: '25px', height: '25px' } : { width: '60px', height: '60px' }}
+                    style={
+                      opt === OTHER_OPTION_LABEL
+                        ? { width: isMobile ? '20px' : '25px', height: isMobile ? '20px' : '25px' }
+                        : { width: isMobile ? '40px' : '60px', height: isMobile ? '40px' : '60px' }
+                    }
                   />
                 </div>
               </div>
@@ -239,7 +251,6 @@ const GamePage: React.FC = () => {
       )}
 
       <div className="ground" />
-
       <div
         className="hero"
         style={{ left: getHeroLeftByIndex(heroIndexRef.current, currentOptions.length) }}

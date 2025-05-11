@@ -7,7 +7,7 @@ export interface StepNode {
 const tree: StepNode = {
   "options": [
     "국물",
-    "안국물"
+    "안국물안국물"
   ],
   "next": {
     "국물": {

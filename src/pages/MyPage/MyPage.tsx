@@ -71,18 +71,13 @@ const MyPage: React.FC = () => {
   return (
     <div className="my-page">
       {user ? (
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <div className="user-box">
           <p>👋 <strong>{user.nickname}</strong>님, 환영합니다!</p>
-          <button onClick={handleLogout} style={{ marginTop: '20px' }}>
-            로그아웃
-          </button>
-          <br />
-          <button onClick={handleDeleteAccount} style={{ marginTop: '20px', color: 'red' }}>
-            회원 탈퇴
-          </button>
+          <button onClick={handleLogout}>로그아웃</button>
+          <button onClick={handleDeleteAccount}>회원 탈퇴</button>
         </div>
       ) : (
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <div className="user-box">
           <button onClick={handleLogin}>Google 로그인</button>
         </div>
       )}

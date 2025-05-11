@@ -1,31 +1,76 @@
 .my-page {
-  padding: 20px;
-  color: #eee;
+  min-height: 100vh;
+  background-color: #fefaf6;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Do Hyeon', sans-serif;
+  color: #333;
+}
+
+.my-page .user-box {
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.my-page .user-box p {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.my-page button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
   font-family: 'Do Hyeon', sans-serif;
 }
 
-.my-page h2 {
-  font-size: 22px;
-  margin-bottom: 16px;
+.my-page button:first-of-type {
+  background-color: #4285f4;
+  color: white;
 }
 
-.my-page .footer-link {
-  margin-top: 40px;
-  text-align: center;
+.my-page button:first-of-type:hover {
+  background-color: #3367d6;
+}
+
+.my-page button:last-of-type {
+  background-color: #fff0f0;
+  color: red;
+  border: 1px solid red;
+}
+
+.my-page button:last-of-type:hover {
+  background-color: #ffe5e5;
+}
+
+.footer-link {
+  margin-top: 60px;
   font-size: 14px;
+  color: #999;
+  text-align: center;
 }
 
-.my-page .footer-link a {
-  color: #ccc;
+.footer-link a {
+  color: #888;
   text-decoration: underline;
   transition: color 0.2s ease;
 }
 
-.my-page .footer-link a:hover {
-  color: #f88c6c;
-}
-
-.google-login-wrapper {
-  width: 280px;
-  margin: 0 auto;
+.footer-link a:hover {
+  color: #ff6f61;
 }

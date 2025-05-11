@@ -7,6 +7,7 @@ import GamePage from '../pages/GamePage';
 import ResultPage from '../pages/ResultPage';
 import MyPage from '../pages/MyPage';
 import PrivacyPage from '../pages/PrivacyPage';
+import Terms from '../pages/TermsPage';
 import OAuthCallback from '../pages/OAuthCallback';
 
 
@@ -20,6 +21,8 @@ const AppRouter = () => {
         <Route path="result" element={<ResultPage />} />
         <Route path="mypage" element={<MyPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
+        <Route path="terms" element={<Terms />} />
+
       </Route>
       <Route path="/oauth/callback" element={<OAuthCallback />} />
     </Routes>

@@ -3,6 +3,7 @@ import App from '../App';
 import IntroPage from '../pages/IntroPage/IntroPage';
 import GamePage from '../pages/GamePage/GamePage';
 import MyPage from '../pages/MyPage/MyPage';
+import UserPage from '../pages/MyPage/UserPage';
 import PrivacyPage from '../pages/MyPage/PrivacyPage';
 import Terms from '../pages/MyPage/TermsPage';
 import OAuthCallback from '../pages/MyPage/OAuthCallback';
@@ -15,6 +16,7 @@ const AppRouter = () => {
         <Route index element={<IntroPage />} />
         <Route path="game" element={<GamePage />} />
         <Route path="mypage" element={<MyPage />} />
+         <Route path="/user" element={<UserPage />} />  
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<Terms />} />
 

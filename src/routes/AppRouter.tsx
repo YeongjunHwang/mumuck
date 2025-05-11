@@ -1,14 +1,13 @@
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import App from '../App';
-import IntroPage from '../pages/IntroPage';
+import IntroPage from '../pages/IntroPage/IntroPage';
 import SelectPage from '../pages/SelectPage';
-import GamePage from '../pages/GamePage';
+import GamePage from '../pages/GamePage/GamePage';
 import ResultPage from '../pages/ResultPage';
-import MyPage from '../pages/MyPage';
-import PrivacyPage from '../pages/PrivacyPage';
-import Terms from '../pages/TermsPage';
-import OAuthCallback from '../pages/OAuthCallback';
+import MyPage from '../pages/MyPage/MyPage';
+import PrivacyPage from '../pages/MyPage/PrivacyPage';
+import Terms from '../pages/MyPage/TermsPage';
+import OAuthCallback from '../pages/MyPage/OAuthCallback';
 
 
 const AppRouter = () => {

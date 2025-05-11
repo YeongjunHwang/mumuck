@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import Lottie from 'lottie-react';
-import catRun from '../assets/cat-run.json';
-import checkMark from '../assets/check.json';
-import xMark from '../assets/xmark.json';
+import catRun from './assets/cat-run.json';
+import checkMark from './assets/check.json';
+import xMark from './assets/xmark.json';
 
 import './GamePage.css';
-import tree from '../data/tree';
+import tree from './data/tree';
 
 interface StepNode {
   options: string[];

@@ -60,7 +60,7 @@ const OAuthCallback = () => {
     console.warn('⚠️ URL에 token 파라미터 없음');
     alert('로그인 실패: 토큰 없음');
     navigate('/');
-  }, []);
+  }, [params, navigate]);
 
   return <p style={{ textAlign: 'center', marginTop: '40px' }}>로그인 처리 중입니다...</p>;
 };

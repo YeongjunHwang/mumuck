@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdFastfood } from 'react-icons/md';
-import FoodBanner from '../components/FoodBanner';
-import AdvertiseBanner from '../components/AdvertiseBanner';
+import FoodBanner from '../../components/FoodBanner';
+import AdvertiseBanner from '../../components/AdvertiseBanner';
 
 import './IntroPage.css';
 

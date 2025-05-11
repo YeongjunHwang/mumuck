@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import SiteInfo from '../components/SiteInfo/SiteInfo';
+import SiteInfo from '../../components/SiteInfo/SiteInfo';
 import './MyPage.css';
 
 interface User {

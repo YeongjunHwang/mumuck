@@ -6,13 +6,13 @@
   background-color: #253238;
   padding-top: 5px; /* 헤더 높이와 맞게 조정 */
   color: #ffffff;
-  min-height: 100vh;
+  min-height: 180vh;
   box-sizing: border-box;
 }
 
 .intro-content {
   text-align: center;
-  padding: 32px 20px;
+  padding: 30px 20px;
   margin-top: 15px;
   background-color: #2e3b44;  /* ✅ 배경 박스 컬러 */
   border-radius: 16px;        /* ✅ 둥근 모서리 */
@@ -32,7 +32,7 @@
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
   margin-top : -20px;
   margin-bottom: 10px;
@@ -41,7 +41,7 @@ h1 {
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 14px;
   font-family: 'Do Hyeon', sans-serif;
   color: #cccccc;
   margin-top: 5px;
@@ -49,7 +49,7 @@ h1 {
 
 .start-btn {
   padding: 14px 30px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   font-family: 'Do Hyeon', sans-serif;
   background-color: #f88c6c;

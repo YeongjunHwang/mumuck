@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import App from '../App';
 import IntroPage from '../pages/IntroPage/IntroPage';
 import GamePage from '../pages/GamePage/GamePage';
-import MyPage from '../pages/MyPage/MyPage';
+import LoginPage from '../pages/MyPage/LoginPage';
 import UserPage from '../pages/MyPage/UserPage';
 import PrivacyPage from '../components/SiteInfo/pages/PrivacyPage';
 import Terms from '../components/SiteInfo/pages/TermsPage';
@@ -19,8 +19,8 @@ const AppRouter = () => {
         <Route index element={<IntroPage />} />
         <Route path="game" element={<GamePage />} />
         <Route path="TierIntro" element={<TierIntro />} />
-        <Route path="mypage" element={<MyPage />} />
-        <Route path="/user" element={<UserPage />} />
+        <Route path="LoginPage" element={<LoginPage />} />
+        <Route path="UserPage" element={<UserPage />} />
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<Terms />} />
         <Route path="Info" element={<Info />} />

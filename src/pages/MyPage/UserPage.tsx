@@ -1,4 +1,3 @@
-// src/pages/UserPage.tsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
@@ -26,7 +25,7 @@ const UserPage = () => {
       }
     } else {
       // 로그인 안 된 경우 로그인 페이지로
-      navigate('/mypage');
+      navigate('/LoginPage');
     }
   }, [navigate]);
 
@@ -34,7 +33,7 @@ const UserPage = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     setUser(null);
-    navigate('/mypage');
+    navigate('/LoginPage');
   };
 
   const handleDeleteAccount = async () => {

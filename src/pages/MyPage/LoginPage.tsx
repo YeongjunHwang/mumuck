@@ -1,5 +1,5 @@
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
-import './MyPage.css';
+import './LoginPage.css';
 
 const MyPage: React.FC = () => {
   const handleLogin = () => {
@@ -7,7 +7,7 @@ const MyPage: React.FC = () => {
   };
 
   return (
-    <div className="my-page">
+    <div className="login-page">
       <div className="google-login-wrapper">
         <button onClick={handleLogin} className="google-login-button">
           <img

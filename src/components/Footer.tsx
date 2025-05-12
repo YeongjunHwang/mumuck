@@ -19,7 +19,7 @@ const tabs: TabItem[] = [
   { label: '홈', icon: MdHome, path: '/' },
   { label: '메뉴 추천 게임', icon: MdRestaurantMenu, path: '/game' },
   { label: '브랜드 랭킹', icon: MdLeaderboard, path: '/TierIntro' },
-  { label: '마이페이지', icon: MdPerson, path: '/mypage' },
+  { label: '마이페이지', icon: MdPerson, path: '/userPage' },
 ];
 
 const Footer: React.FC = () => {

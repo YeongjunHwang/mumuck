@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import FoodBanner from '../../components/FoodBanner';
 import AdvertiseBanner from '../../components/AdvertiseBanner';
 import introAnim from './IntroData/Intro.json';
+import SiteInfo from '../../components/SiteInfo/SiteInfo';
+
 
 
 import './IntroPage.css';
@@ -27,6 +29,7 @@ const IntroPage: React.FC = () => {
         </button>
       </div>
       <AdvertiseBanner />
+      <SiteInfo />
     </div>
   );
 };

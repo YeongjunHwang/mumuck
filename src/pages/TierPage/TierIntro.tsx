@@ -4,6 +4,8 @@ import Lottie from 'lottie-react';
 import chickenAnim from './tierData/chicken.json';
 import pizzaAnim from './tierData/pizza.json';
 import burgerAnim from './tierData/burger.json';
+import SiteInfo from '../../components/SiteInfo/SiteInfo';
+
 
 
 import './TierIntro.css';
@@ -81,6 +83,8 @@ const TierIntro = () => {
                     <p className="no-result">검색 결과가 없습니다.</p>
                 )}
             </div>
+            <SiteInfo />
+
         </div>
     );
 };

@@ -3,7 +3,7 @@ import Lottie from 'lottie-react';
 import catRun from './assets/cat-run.json';
 import checkMark from './assets/check.json';
 import xMark from './assets/xmark.json';
-
+import SiteInfo from '../../components/SiteInfo/SiteInfo';
 import './GamePage.css';
 import tree from './data/tree';
 
@@ -257,6 +257,8 @@ const GamePage: React.FC = () => {
       >
         <Lottie animationData={catRun} loop style={{ width: 130, height: 130 }} />
       </div>
+      <SiteInfo />
+
     </div>
   );
 };

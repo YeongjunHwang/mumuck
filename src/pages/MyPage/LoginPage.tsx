@@ -1,6 +1,7 @@
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
 import './LoginPage.css';
 
+
 const LoginPage = () => {
   const handleGoogleLogin = () => {
     window.location.href = 'https://mumuck-server.onrender.com/api/auth/google';
@@ -12,7 +13,7 @@ const LoginPage = () => {
 
       <div className="login-buttons">
         <button className="social-button google" onClick={handleGoogleLogin}>
-          <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" />
+          <img src="/images/g-logo/g-logo.png" alt="Google" loading="eager" />
           구글 계정으로 로그인
         </button>
       </div>

@@ -23,7 +23,7 @@ const OAuthCallback = () => {
         .then((data) => {
           console.log('✅ 유저 정보:', data);
           localStorage.setItem('user', JSON.stringify(data));
-          navigate('/user');
+          navigate('/userPage');
         })
         .catch((err) => {
           console.error('❌ 유저 정보 요청 실패:', err);

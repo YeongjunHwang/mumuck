@@ -6,64 +6,38 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Do Hyeon', sans-serif;
-  color: #333;
-}
-
-.user-box {
-  background-color: #fff;
-  border: 2px solid #333;
-  border-radius: 12px;
-  padding: 32px 24px;
-  width: 100%;
-  max-width: 340px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.user-box h2 {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
-
-.user-box p {
-  font-size: 16px;
-  margin-bottom: 24px;
-  color: #555;
-}
-
-.user-box button {
-  background-color: #4285f4;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  padding: 12px 20px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  font-family: 'Do Hyeon', sans-serif;
-}
-
-.user-box button:hover {
-  background-color: #3367d6;
-}
-
-.footer-link {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.footer-link a {
-  color: #888;
-  text-decoration: underline;
-  transition: color 0.2s ease;
-}
-
-.footer-link a:hover {
-  color: #f88c6c;
+  color: #fff;
 }
 
 .google-login-wrapper {
+  margin-top: 100px;
   width: 280px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.google-login-button {
+  background-color: #fff;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Do Hyeon', sans-serif;
+  color: #3c4043;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  height: 42px;
+  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.google-login-button:hover {
+  background-color: #f8f9fa;
+}
+
+.google-login-button img {
+  width: 20px;
+  height: 20px;
 }

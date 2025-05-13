@@ -10,6 +10,9 @@ import Info from '../components/SiteInfo/pages/Info';
 import OAuthCallback from '../pages/MyPage/OAuthCallback';
 import TierIntro from '../pages/TierPage/TierIntro';
 import Chicken from '../pages/TierPage/menu/Chicken';
+import Pizza from '../pages/TierPage/menu/Pizza';
+import Burger from '../pages/TierPage/menu/Burger';
+
 
 
 
@@ -27,6 +30,8 @@ const AppRouter = () => {
         <Route path="terms" element={<Terms />} />
         <Route path="Info" element={<Info />} />
         <Route path="/tier/Chicken" element={<Chicken />} />
+        <Route path="/tier/Pizza" element={<Pizza />} />
+        <Route path="/tier/Burger" element={<Burger />} />
       </Route>
       <Route path="/oauth/callback" element={<OAuthCallback />} />
     </Routes>

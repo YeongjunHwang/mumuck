@@ -17,7 +17,7 @@ const categories = [
         lottie: ChickenAnim,
         description: '지금 가장 인기 있는 치킨은?'
     },
-    /*{
+    {
         label: '피자',
         value: 'Pizza',
         lottie: PizzaAnim,
@@ -28,7 +28,7 @@ const categories = [
         value: 'Burger',
         lottie: BurgerAnim,
         description: '햄버거 브랜드 랭킹 확인'
-    },*/
+    },
 ];
 
 const TierIntro = () => {

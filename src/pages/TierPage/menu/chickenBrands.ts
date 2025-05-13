@@ -1,0 +1,51 @@
+export const chickenBrands = [
+  {
+    brand: 'BBQ',
+    name: '황금올리브',
+    description: '겉은 바삭 육즙 가득한 부드러운 속살이 환상적인 건강한 치킨. 비비큐의 시그니처 메뉴, 후라이드의 대명사 황금올리브치킨',
+    votes: 167,
+    image: 'golden-olive.png',
+  },
+  {
+    brand: 'BHC',
+    name: '뿌링클',
+    description: '달콤 짭조름한 뿌링클 시즈닝과 크림치즈 소스의 완벽 조합. BHC 대표 인기 메뉴',
+    votes: 142,
+    image: 'purinkle.png',
+  },
+  {
+    brand: '교촌치킨',
+    name: '허니콤보',
+    description: '달콤한 허니 소스와 바삭한 식감이 어우러진 교촌의 시그니처 메뉴',
+    votes: 103,
+    image: 'honey-combo.png',
+  },
+  {
+    brand: '굽네치킨',
+    name: '고추바사삭',
+    description: '튀기지 않아 담백하고 바삭! 매콤한 고추의 풍미가 살아있는 굽네 대표 메뉴',
+    votes: 85,
+    image: 'spicy-crispy.png',
+  },
+  {
+    brand: '네네치킨',
+    name: '스노윙치즈',
+    description: '치즈 시즈닝 가득한 달콤 고소한 스노윙 치킨. 네네의 시즈닝 라인 대표 메뉴',
+    votes: 63,
+    image: 'snowing-cheese.png',
+  },
+  {
+    brand: '처갓집양념치킨',
+    name: '슈프림양념치킨',
+    description: '처갓집 특제 양념소스와 부드러운 치킨의 조화. 꾸준한 인기의 양념치킨',
+    votes: 51,
+    image: 'supreme-sauce.png',
+  },
+  {
+    brand: '지코바',
+    name: '숯불양념치킨',
+    description: '숯불 향 가득한 양념 구이 스타일 치킨. 특색 있는 독보적 메뉴',
+    votes: 22,
+    image: 'charcoal-sauce.png',
+  },
+];

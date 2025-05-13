@@ -1,9 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Lottie from 'lottie-react';
-import chickenAnim from './tierData/chicken.json';
-import pizzaAnim from './tierData/pizza.json';
-import burgerAnim from './tierData/burger.json';
+import ChickenAnim from './tierData/chicken.json';
+import PizzaAnim from './tierData/pizza.json';
+import BurgerAnim from './tierData/burger.json';
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
 
 
@@ -13,20 +13,20 @@ import './TierIntro.css';
 const categories = [
     {
         label: '치킨',
-        value: 'chicken',
-        lottie: chickenAnim,
+        value: 'Chicken',
+        lottie: ChickenAnim,
         description: '지금 가장 인기 있는 치킨은?'
     },
     {
         label: '피자',
-        value: 'pizza',
-        lottie: pizzaAnim,
+        value: 'Pizza',
+        lottie: PizzaAnim,
         description: '피자 브랜드 베스트 순위'
     },
     {
         label: '햄버거',
-        value: 'burger',
-        lottie: burgerAnim,
+        value: 'Burger',
+        lottie: BurgerAnim,
         description: '햄버거 브랜드 랭킹 확인'
     },
 ];

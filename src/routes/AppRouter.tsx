@@ -9,6 +9,8 @@ import Terms from '../components/SiteInfo/pages/TermsPage';
 import Info from '../components/SiteInfo/pages/Info';
 import OAuthCallback from '../pages/MyPage/OAuthCallback';
 import TierIntro from '../pages/TierPage/TierIntro';
+import Chicken from '../pages/TierPage/menu/Chicken';
+
 
 
 
@@ -24,8 +26,7 @@ const AppRouter = () => {
         <Route path="privacy" element={<PrivacyPage />} />
         <Route path="terms" element={<Terms />} />
         <Route path="Info" element={<Info />} />
-
-
+        <Route path="/tier/Chicken" element={<Chicken />} />
       </Route>
       <Route path="/oauth/callback" element={<OAuthCallback />} />
     </Routes>

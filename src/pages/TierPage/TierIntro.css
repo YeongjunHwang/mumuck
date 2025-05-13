@@ -105,20 +105,20 @@
 }
 
 /* Lottie 애니메이션 */
-.lottie-chicken {
+.lottie-Chicken {
   width: 110px;
   flex-shrink: 0;
   margin-top: 12px;
 }
 
-.lottie-pizza {
+.lottie-Pizza {
   width: 90px;
   flex-shrink: 0;
   margin-top: 10px;
   margin-right : 12px;
 }
 
-.lottie-burger {
+.lottie-Burger {
   width: 80px;
   flex-shrink: 0;
   margin-top: 4px;

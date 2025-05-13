@@ -1,5 +1,5 @@
 .page-title {
-  color: #eee;
+  color: #ffcc66;
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 16px;
@@ -16,7 +16,7 @@
 .menu-card {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #444;
   padding: 12px 0;
 }
 
@@ -25,27 +25,30 @@
 }
 
 .tag {
-  color: #6a5acd;
+  color: #927fff;
   font-weight: bold;
   font-size: 12px;
 }
 
 .menu-title {
-  color: #eee;
-  font-size: 14px;
+  color: #ffffff;
+  font-size: 16px;
   font-weight: bold;
   margin-top: 4px;
 }
 
 .menu-desc {
-  color: #eee;
+  color: #dddddd;
   font-size: 14px;
   margin-top: 4px;
+  max-width: 480px;
+  line-height: 1.5;
+  word-break: keep-all;
 }
 
 .menu-review {
   font-size: 13px;
-  color: #888;
+  color: #888888;
 }
 
 .menu-image {
@@ -55,4 +58,40 @@
   margin-top: 10px;
   margin-left: 12px;
   border-radius: 12px;
+}
+
+.search-wrapper {
+  padding: 0 12px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #bbb;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  font-size: 14px;
+  border: 1px solid #7c6de6;
+  border-radius: 8px;
+  background-color: #2f3c48;
+  color: #fff;
+  outline: none;
+  box-sizing: border-box; /* ✅ padding 포함해도 100% 넘지 않음 */
+}
+
+.search-input:focus {
+  border-color: #a694f9;
+}
+
+.search-input::placeholder {
+  color: #bbb;
 }

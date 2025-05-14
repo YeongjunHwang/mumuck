@@ -95,3 +95,18 @@
 .search-input::placeholder {
   color: #bbb;
 }
+
+.intro-ad-wrapper {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  max-width: 360px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.intro-ad-wrapper ins.adsbygoogle {
+  min-height: 0 !important;
+  height: 90px;
+  display: block;
+}

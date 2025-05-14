@@ -13,12 +13,9 @@ import Chicken from '../pages/TierPage/menu/Chicken';
 import Pizza from '../pages/TierPage/menu/Pizza';
 import Burger from '../pages/TierPage/menu/Burger';
 
-
-
-
-
 const AppRouter = () => {
   return (
+    
     <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<IntroPage />} />

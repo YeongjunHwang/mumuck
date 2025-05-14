@@ -5,9 +5,6 @@ import ChickenAnim from './tierData/chicken.json';
 import PizzaAnim from './tierData/pizza.json';
 import BurgerAnim from './tierData/burger.json';
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
-
-
-
 import './TierIntro.css';
 
 const categories = [
@@ -84,7 +81,6 @@ const TierIntro = () => {
                 )}
             </div>
             <SiteInfo />
-
         </div>
     );
 };

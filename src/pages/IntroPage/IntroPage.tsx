@@ -1,28 +1,14 @@
-import React, { useEffect } from 'react';
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
 import FoodBanner from '../../components/FoodBanner';
-import AdvertiseBanner from '../../components/AdvertiseBanner';
 import introAnim from './IntroData/Intro.json';
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
 import './IntroPage.css';
-
-
+import AdBanner from '../../components/AdBanner';
 
 const IntroPage: React.FC = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    const ads = document.getElementsByClassName('adsbygoogle');
-    const ad = ads[0];
-    if (ad && !ad.getAttribute('data-adsbygoogle-status')) {
-      try {
-        (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-        (window as any).adsbygoogle.push({});
-      } catch (e) {
-        console.error('AdSense Error:', e);
-      }
-    }
-  }, []);
+
   return (
     <div className="intro-page">
       <FoodBanner />
@@ -39,15 +25,8 @@ const IntroPage: React.FC = () => {
         </button>
       </div>
       <div className="intro-ad-wrapper">
-        <ins className="adsbygoogle"
-          style={{ display: 'block' }}
-          data-ad-client="ca-pub-5460335586767094"
-          data-ad-slot="5917717645"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
+       <AdBanner slot="5917717645" />
       </div>
-      <AdvertiseBanner />
       <SiteInfo />
     </div>
   );

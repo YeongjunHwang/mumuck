@@ -67,15 +67,6 @@ h1 {
   transform: translateY(-1px);
 }
 
-.intro-ad-wrapper {
-  margin-top: 24px;
-  margin-bottom: 24px;
-  max-width: 360px;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
 @keyframes fadeInUp {
   from {
     opacity: 0;

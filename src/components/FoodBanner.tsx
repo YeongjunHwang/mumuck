@@ -12,8 +12,9 @@ const FoodBanner = () => {
     const slides = [
         { img: `${process.env.PUBLIC_URL}/images/foodbanners/kyochon.png` },
         { img: `${process.env.PUBLIC_URL}/images/foodbanners/domino.png` },
-        { img: `${process.env.PUBLIC_URL}/images/foodbanners/huwon.png` }
-        ];
+        { img: `${process.env.PUBLIC_URL}/images/foodbanners/huwon.png` },
+        { img: `${process.env.PUBLIC_URL}/images/foodbanners/adversise.png` }
+    ];
 
     return (
         <div className="banner-wrapper">

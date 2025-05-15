@@ -1,9 +1,13 @@
-import React from 'react';
 import './Info.css';
+import AdBanner from '../../../components/AdBanner';
 
 const InfoPage = () => {
   return (
     <div className="info-page">
+      <div className="intro-ad-wrapper">
+        <AdBanner slot="5917717645" />
+        
+      </div>
       <h1>Mumuck - 메뉴 고민, 여기서 끝!</h1>
       <p>
         <strong>Mumuck</strong>은 오늘 "뭐 먹을까?"라는 고민을 해결해주는 음식 추천 플랫폼입니다.
@@ -59,7 +63,7 @@ const InfoPage = () => {
 
       <h2>문의처</h2>
       <p>
-        서비스 개선 제안, 오류 제보, 광고 관련 문의는 아래 이메일로 연락주시면 신속하게 응답드리겠습니다. <br/>
+        서비스 개선 제안, 오류 제보, 광고 관련 문의는 아래 이메일로 연락주시면 신속하게 응답드리겠습니다. <br />
         <strong>이메일:</strong> mumuck@naver.com
       </p>
       <br /><br /><br /><br />

@@ -1,15 +1,17 @@
 .banner-wrapper {
   position: relative;
-  width: calc(100% + 40px); /* 양쪽으로 확장 */
-  margin: 0 -12px;           /* 부모(.app-main)의 padding과 중화시킴 */
-  height: 120px;
+  width: calc(100% + 40px);
+  /* 양쪽으로 확장 */
+  margin: 0 -12px;
+  /* 부모(.app-main)의 padding과 중화시킴 */
+  height: 140px;
   border-radius: 16px;
   overflow: hidden;
 }
 
 .banner-slide {
   width: 100%;
-  height: 120px;
+  height: 140px;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -19,16 +21,16 @@
   justify-content: center;
 }
 
+.swiper-slide {
+  background: transparent !important;
+  height: 140px;
+  padding: 0 !important;
+}
+
 .banner-image {
   width: 100%;
   height: 100%;
   display: block;
-}
-
-.swiper-slide {
-  background: transparent !important;
-  height: 120px;
-  padding: 0 !important;
 }
 
 .custom-indicator {

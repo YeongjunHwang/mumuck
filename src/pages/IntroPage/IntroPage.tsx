@@ -4,7 +4,7 @@ import FoodBanner from '../../components/FoodBanner';
 import introAnim from './IntroData/Intro.json';
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
 import './IntroPage.css';
-import AdBanner from '../../components/AdBanner';
+import AdvertiseBanner from '../../components/AdvertiseBanner';
 
 const IntroPage: React.FC = () => {
   const navigate = useNavigate();
@@ -24,9 +24,7 @@ const IntroPage: React.FC = () => {
           추천받기 시작
         </button>
       </div>
-      <div className="intro-ad-wrapper">
-       <AdBanner slot="5917717645" />
-      </div>
+      <AdvertiseBanner />
       <SiteInfo />
     </div>
   );

@@ -255,7 +255,7 @@ const GamePage: React.FC = () => {
         className="hero"
         style={{ left: getHeroLeftByIndex(heroIndexRef.current, currentOptions.length) }}
       >
-        <Lottie animationData={catRun} loop style={{ width: 130, height: 130 }} />
+        <Lottie animationData={catRun} loop style={{ width: 120, height: 120 }} />
       </div>
       <SiteInfo />
 

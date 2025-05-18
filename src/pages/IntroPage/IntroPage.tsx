@@ -21,7 +21,7 @@ const IntroPage: React.FC = () => {
         </h1>
         <p className="subtitle">매일 반복되는 고민, 저희가 해결해드릴게요</p>
         <button className="start-btn" onClick={() => navigate('/game')}>
-          추천받기 시작
+          추천게임 시작
         </button>
       </div>
       <AdvertiseBanner />

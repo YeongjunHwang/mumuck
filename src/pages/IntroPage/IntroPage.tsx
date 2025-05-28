@@ -22,7 +22,6 @@ const IntroPage: React.FC = () => {
         </h1>
         <p className="subtitle">매일 반복되는 고민, 저희가 해결해드릴게요</p>
 
-        {/* ✅ 설명 콘텐츠 추가 */}
         <div className="intro-description">
           <p>
             Mumuck은 당신이 매일 겪는 '메뉴 고민'을 게임처럼 즐겁게 해결해주는 플랫폼입니다.

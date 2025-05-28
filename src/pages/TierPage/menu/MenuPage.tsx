@@ -1,5 +1,4 @@
 import './MenuPage.css';
-import AdBanner from '../../../components/AdBanner';
 import { useState } from 'react';
 
 interface MenuItem {
@@ -43,9 +42,6 @@ const MenuPage = ({ title, items, imageFolder }: MenuPageProps) => {
 
   return (
     <div className="chicken-page">
-      <div className="intro-ad-wrapper">
-        <AdBanner slot="1705934492" />
-      </div>
       <h2 className="page-title">{title}</h2>
 
       <div className="search-wrapper">

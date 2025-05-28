@@ -1,13 +1,8 @@
 import './Info.css';
-import AdBanner from '../../../components/AdBanner';
 
 const InfoPage = () => {
   return (
     <div className="info-page">
-      <div className="intro-ad-wrapper">
-        <AdBanner slot="5917717645" />
-        
-      </div>
       <h1>Mumuck - 메뉴 고민, 여기서 끝!</h1>
       <p>
         <strong>Mumuck</strong>은 오늘 "뭐 먹을까?"라는 고민을 해결해주는 음식 추천 플랫폼입니다.

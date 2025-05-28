@@ -11,7 +11,6 @@
     <priority>1.0</priority>
   </url>
 
-
   <!-- 티어 인트로 -->
   <url>
     <loc>https://mumuck.com/TierIntro</loc>
@@ -20,4 +19,24 @@
     <priority>0.8</priority>
   </url>
 
+
+  <!-- 티어페이지들 -->
+  <url>
+    <loc>https://www.mumuck.com/tier/Chicken</loc>
+    <lastmod>2025-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mumuck.com/tier/Pizza</loc>
+    <lastmod>2025-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.mumuck.com/tier/Burger</loc>
+    <lastmod>2025-05-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

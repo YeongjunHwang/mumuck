@@ -1,41 +1,44 @@
-import { useEffect, useRef } from 'react';
+// components/AdBanner.tsx
+import React, { useEffect, useRef } from 'react'
+import dynamic from 'next/dynamic'
 
-interface AdBannerProps {
-  slot: string;
-}
-
-const AdBanner = ({ slot }: AdBannerProps) => {
-  const adRef = useRef<HTMLDivElement>(null);
-  const initialized = useRef(false);
+const AdBanner: React.FC<{ slot: string }> = ({ slot }) => {
+  const adRef = useRef<HTMLDivElement>(null)
+  const initialized = useRef(false)
 
   useEffect(() => {
-    const tryLoadAd = () => {
-      if (!adRef.current || initialized.current) return;
+    if (typeof window === 'undefined') return
 
-      const width = adRef.current.offsetWidth;
-      if (width === 0) return;
+    const tryLoadAd = () => {
+      if (!adRef.current || initialized.current) return
+
+      const width = adRef.current.offsetWidth
+      if (width === 0) return
 
       try {
-        (window as any).adsbygoogle = (window as any).adsbygoogle || [];
-        (window as any).adsbygoogle.push({});
-        initialized.current = true;
+        ;(window as any).adsbygoogle = (window as any).adsbygoogle || []
+        ;(window as any).adsbygoogle.push({})
+        initialized.current = true
       } catch (e) {
-        console.error('AdSense Error:', e);
+        console.error('AdSense Error:', e)
       }
-    };
+    }
 
     // DOM 안정화 이후 광고 로딩
-    const timeout = setTimeout(tryLoadAd, 500);
+    const timeout = window.setTimeout(tryLoadAd, 500)
 
-    // 옵저버도 함께 사용 (재렌더링 대응)
-    const observer = new ResizeObserver(() => tryLoadAd());
-    if (adRef.current) observer.observe(adRef.current);
+    // 리사이즈 감지
+    let observer: ResizeObserver | null = null
+    if ('ResizeObserver' in window && adRef.current) {
+      observer = new ResizeObserver(tryLoadAd)
+      observer.observe(adRef.current)
+    }
 
     return () => {
-      clearTimeout(timeout);
-      observer.disconnect();
-    };
-  }, []);
+      clearTimeout(timeout)
+      if (observer) observer.disconnect()
+    }
+  }, [])
 
   return (
     <div
@@ -48,18 +51,15 @@ const AdBanner = ({ slot }: AdBannerProps) => {
     >
       <ins
         className="adsbygoogle"
-        style={{
-          display: 'block',
-          width: '100%',
-          height: '100px',
-        }}
+        style={{ display: 'block', width: '100%', height: '100px' }}
         data-ad-client="ca-pub-5460335586767094"
         data-ad-slot={slot}
         data-ad-format="auto"
         data-full-width-responsive="true"
-      ></ins>
+      />
     </div>
-  );
-};
+  )
+}
 
-export default AdBanner;
+// Next.js에서 클라이언트 전용으로만 렌더링
+export default dynamic(() => Promise.resolve(AdBanner), { ssr: false })

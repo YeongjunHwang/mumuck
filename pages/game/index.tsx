@@ -52,26 +52,31 @@ const GamePage: React.FC = () => {
 
   // 📱 모바일 리사이즈 대응
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 480);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const checkMobile = () => setIsMobile(window.innerWidth <= 480)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
-  const moveHero = useCallback((direction: 'left' | 'right') => {
-    heroIndexRef.current = direction === 'left'
-      ? Math.max(0, heroIndexRef.current - 1)
-      : Math.min(currentOptions.length - 1, heroIndexRef.current + 1);
-  }, [currentOptions.length]);
+  const moveHero = useCallback(
+    (direction: 'left' | 'right') => {
+      heroIndexRef.current =
+        direction === 'left'
+          ? Math.max(0, heroIndexRef.current - 1)
+          : Math.min(currentOptions.length - 1, heroIndexRef.current + 1)
+    },
+    [currentOptions.length]
+  )
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!gameStarted || !falling) return;
-      if (e.key === 'ArrowLeft') moveHero('left');
-      if (e.key === 'ArrowRight') moveHero('right');
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [moveHero, gameStarted, falling]);
+      if (!gameStarted || !falling) return
+      if (e.key === 'ArrowLeft') moveHero('left')
+      if (e.key === 'ArrowRight') moveHero('right')
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [moveHero, gameStarted, falling])
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {

@@ -1,4 +1,4 @@
-import MenuPage from './MenuPage';
+import MenuPage from '../../../components/MenuPage';
 import { burgerBrands } from '../../../data/ts/burgerBrands';
 
 const Burger = () => {

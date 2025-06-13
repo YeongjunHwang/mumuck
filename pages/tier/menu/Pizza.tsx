@@ -1,5 +1,5 @@
 import { pizzaBrands } from '../../../data/ts/pizzaBrands';
-import MenuPage from './MenuPage';
+import MenuPage from '../../../components/MenuPage';
 
 const Pizza = () => {
   return (

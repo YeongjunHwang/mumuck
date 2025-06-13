@@ -1,58 +1,68 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import catRun from '../../data/json/cat-run.json';
-import checkMark from '../../data/json/check.json';
-import xMark from '../../data/json/xmark.json';
-import SiteInfo from '../../components/SiteInfo/SiteInfo';
-import tree from '../../data/ts/tree';
+// pages/game/index.tsx
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 
+import catRun from '../../data/json/cat-run.json'
+import checkMark from '../../data/json/check.json'
+import xMark from '../../data/json/xmark.json'
+import SiteInfo from '../../components/SiteInfo/SiteInfo'
+import tree from '../../data/ts/tree'
+
 const Lottie = dynamic(() => import('lottie-react'), {
-  ssr: false,  // 서버에서는 무시
+  ssr: false, // 서버 사이드에서는 로드하지 않음
 })
+
 interface StepNode {
-  options: string[];
-  next?: { [key: string]: StepNode };
-  finalOptions?: string[];
+  options: string[]
+  next?: { [key: string]: StepNode }
+  finalOptions?: string[]
 }
 
-const OTHER_OPTION_LABEL = '다른 메뉴';
+const OTHER_OPTION_LABEL = '다른 메뉴'
 
 const getHeroLeftByIndex = (index: number, total: number) => {
-  const base = 100 / total;
-  const center = base * index + base / 2;
+  const base = 100 / total
+  const center = base * index + base / 2
 
-  if (index === 0) return `calc(${center}% + 5%)`;
-  if (index === total - 1) return `calc(${center}% - 5%)`;
+  if (index === 0) return `calc(${center}% + 5%)`
+  if (index === total - 1) return `calc(${center}% - 5%)`
 
-  return `${center}%`;
-};
+  return `${center}%`
+}
 
-const getRandomFromArray = (arr: string[], count: number, exclude: Set<string> = new Set()) => {
-  const filtered = arr.filter((item) => !exclude.has(item));
-  const shuffled = [...filtered].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
-};
+const getRandomFromArray = (
+  arr: string[],
+  count: number,
+  exclude: Set<string> = new Set()
+) => {
+  const filtered = arr.filter(item => !exclude.has(item))
+  const shuffled = [...filtered].sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, count)
+}
 
 const GamePage: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
-  const [currentNode, setCurrentNode] = useState<StepNode>(tree);
-  const [obstacleY, setObstacleY] = useState(-200);
-  const [result, setResult] = useState('');
-  const [currentOptions, setCurrentOptions] = useState<string[]>(tree.options);
-  const [countdown, setCountdown] = useState(3);
-  const [gameStarted, setGameStarted] = useState(false);
-  const [falling, setFalling] = useState(true);
-  const [readyNextStep, setReadyNextStep] = useState(false);
-  const [fadeOut, setFadeOut] = useState(false);
+  // 서버 사이드 렌더링 시 window 접근 방지
+  const [isMobile, setIsMobile] = useState(false)
+  const [currentNode, setCurrentNode] = useState<StepNode>(tree)
+  const [obstacleY, setObstacleY] = useState(-200)
+  const [result, setResult] = useState('')
+  const [currentOptions, setCurrentOptions] = useState<string[]>(tree.options)
+  const [countdown, setCountdown] = useState(3)
+  const [gameStarted, setGameStarted] = useState(false)
+  const [falling, setFalling] = useState(true)
+  const [readyNextStep, setReadyNextStep] = useState(false)
+  const [fadeOut, setFadeOut] = useState(false)
 
-  const heroIndexRef = useRef(1);
-  const intervalRef = useRef<number | null>(null);
-  const finalPoolRef = useRef<string[]>([]);
-  const usedOptionsRef = useRef<Set<string>>(new Set());
+  const heroIndexRef = useRef(1)
+  const intervalRef = useRef<number | null>(null)
+  const finalPoolRef = useRef<string[]>([])
+  const usedOptionsRef = useRef<Set<string>>(new Set())
 
-  // 📱 모바일 리사이즈 대응
+  // 클라이언트에서만 window.innerWidth 사용
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 480)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 480)
+    }
     checkMobile()
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
@@ -80,174 +90,239 @@ const GamePage: React.FC = () => {
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
-      if (!gameStarted || !falling) return;
-      const touchX = e.touches[0].clientX;
-      const centerX = window.innerWidth / 2;
-      moveHero(touchX > centerX ? 'right' : 'left');
-    };
-    window.addEventListener('touchstart', handleTouchStart);
-    return () => window.removeEventListener('touchstart', handleTouchStart);
-  }, [moveHero, gameStarted, falling]);
+      if (!gameStarted || !falling) return
+      const touchX = e.touches[0].clientX
+      const centerX = window.innerWidth / 2
+      moveHero(touchX > centerX ? 'right' : 'left')
+    }
+    window.addEventListener('touchstart', handleTouchStart)
+    return () => window.removeEventListener('touchstart', handleTouchStart)
+  }, [moveHero, gameStarted, falling])
 
   useEffect(() => {
-    if (!gameStarted || result || !falling) return;
+    if (!gameStarted || result || !falling) return
 
-    setFadeOut(false);
+    setFadeOut(false)
     intervalRef.current = window.setInterval(() => {
-      setObstacleY((prev) => {
-        const next = prev + 10;
+      setObstacleY(prev => {
+        const next = prev + 10
         if (next >= 355) {
-          clearInterval(intervalRef.current!);
-          setFadeOut(true);
-          setTimeout(() => setReadyNextStep(true), 200);
-          return 355;
+          clearInterval(intervalRef.current!)
+          setFadeOut(true)
+          setTimeout(() => setReadyNextStep(true), 200)
+          return 355
         }
-        return next;
-      });
-    }, 60);
+        return next
+      })
+    }, 60)
 
-    return () => clearInterval(intervalRef.current!);
-  }, [falling, result, gameStarted]);
+    return () => clearInterval(intervalRef.current!)
+  }, [falling, result, gameStarted])
 
   const restartGame = () => {
-    setCurrentNode(tree);
-    setObstacleY(-200);
-    setResult('');
-    setCurrentOptions(tree.options);
-    setCountdown(3);
-    setGameStarted(false);
-    setFalling(true);
-    setReadyNextStep(false);
-    setFadeOut(false);
-    heroIndexRef.current = 1;
-    finalPoolRef.current = [];
-    usedOptionsRef.current.clear();
-  };
+    setCurrentNode(tree)
+    setObstacleY(-200)
+    setResult('')
+    setCurrentOptions(tree.options)
+    setCountdown(3)
+    setGameStarted(false)
+    setFalling(true)
+    setReadyNextStep(false)
+    setFadeOut(false)
+    heroIndexRef.current = 1
+    finalPoolRef.current = []
+    usedOptionsRef.current.clear()
+  }
 
   useEffect(() => {
-    if (!readyNextStep || result || !gameStarted) return;
-    setReadyNextStep(false);
-    setFalling(false);
+    if (!readyNextStep || result || !gameStarted) return
+    setReadyNextStep(false)
+    setFalling(false)
 
-    const selected = currentOptions[heroIndexRef.current];
+    const selected = currentOptions[heroIndexRef.current]
 
-    if (finalPoolRef.current.length > 0 && selected === OTHER_OPTION_LABEL) {
-      const exclude = usedOptionsRef.current;
-      const remaining = finalPoolRef.current.filter(item => !exclude.has(item));
+    if (
+      finalPoolRef.current.length > 0 &&
+      selected === OTHER_OPTION_LABEL
+    ) {
+      const exclude = usedOptionsRef.current
+      const remaining = finalPoolRef.current.filter(
+        item => !exclude.has(item)
+      )
 
       if (remaining.length < 2) {
-        setResult('GAME OVER');
-        return;
+        setResult('GAME OVER')
+        return
       }
 
-      const options = getRandomFromArray(remaining, 2);
-      options.push(OTHER_OPTION_LABEL);
-      const newOptions = getRandomFromArray(options, 3);
-      newOptions.forEach(opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt));
-      setCurrentOptions(newOptions);
-      setCurrentNode({ options: newOptions });
-      setObstacleY(-200);
-      setTimeout(() => setFalling(true), 10);
-      return;
+      const options = getRandomFromArray(remaining, 2)
+      options.push(OTHER_OPTION_LABEL)
+      const newOptions = getRandomFromArray(options, 3)
+      newOptions.forEach(
+        opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt)
+      )
+      setCurrentOptions(newOptions)
+      setCurrentNode({ options: newOptions })
+      setObstacleY(-200)
+      setTimeout(() => setFalling(true), 10)
+      return
     }
 
-    const nextNode = currentNode.next?.[selected];
+    const nextNode = currentNode.next?.[selected]
     if (!nextNode) {
-      setResult(selected === OTHER_OPTION_LABEL ? 'GAME OVER' : `오늘은 ${selected}!`);
-      return;
+      setResult(
+        selected === OTHER_OPTION_LABEL
+          ? 'GAME OVER'
+          : `오늘은 ${selected}!`
+      )
+      return
     }
 
     if (nextNode.finalOptions) {
-      finalPoolRef.current = nextNode.finalOptions.filter(item => item !== OTHER_OPTION_LABEL);
-      usedOptionsRef.current.clear();
+      finalPoolRef.current = nextNode.finalOptions.filter(
+        item => item !== OTHER_OPTION_LABEL
+      )
+      usedOptionsRef.current.clear()
 
-      const exclude = usedOptionsRef.current;
-      const remaining = finalPoolRef.current.filter(item => !exclude.has(item));
+      const exclude = usedOptionsRef.current
+      const remaining = finalPoolRef.current.filter(
+        item => !exclude.has(item)
+      )
 
       if (remaining.length < 2) {
-        setResult('GAME OVER');
-        return;
+        setResult('GAME OVER')
+        return
       }
 
-      const options = getRandomFromArray(remaining, 2);
-      options.push(OTHER_OPTION_LABEL);
-      const newOptions = getRandomFromArray(options, 3);
-      newOptions.forEach(opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt));
-      setCurrentOptions(newOptions);
-      setCurrentNode({ options: newOptions });
+      const options = getRandomFromArray(remaining, 2)
+      options.push(OTHER_OPTION_LABEL)
+      const newOptions = getRandomFromArray(options, 3)
+      newOptions.forEach(
+        opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt)
+      )
+      setCurrentOptions(newOptions)
+      setCurrentNode({ options: newOptions })
     } else {
-      setCurrentOptions(nextNode.options);
-      setCurrentNode(nextNode);
+      setCurrentOptions(nextNode.options)
+      setCurrentNode(nextNode)
     }
 
-    setObstacleY(-200);
-    setTimeout(() => setFalling(true), 10);
-  }, [readyNextStep, gameStarted, result, currentNode, currentOptions]);
+    setObstacleY(-200)
+    setTimeout(() => setFalling(true), 10)
+  }, [
+    readyNextStep,
+    gameStarted,
+    result,
+    currentNode,
+    currentOptions,
+  ])
 
   useEffect(() => {
     if (countdown <= 0) {
-      setGameStarted(true);
-      return;
+      setGameStarted(true)
+      return
     }
-    const timer = window.setTimeout(() => setCountdown((prev) => prev - 1), 500);
-    return () => clearTimeout(timer);
-  }, [countdown]);
+    const timer = window.setTimeout(
+      () => setCountdown(prev => prev - 1),
+      500
+    )
+    return () => clearTimeout(timer)
+  }, [countdown])
 
-  const isGameOver = result === 'GAME OVER';
+  const isGameOver = result === 'GAME OVER'
 
   return (
     <div className="game-container">
       {!gameStarted && (
         <>
           <div className="countdown-overlay">
-            <div className="countdown-number">{countdown > 0 ? countdown : '시작!'}</div>
+            <div className="countdown-number">
+              {countdown > 0 ? countdown : '시작!'}
+            </div>
           </div>
           <div className="touch-guide">
-            <span className="highlight">방향키</span> 또는 <span className="highlight">터치</span>로 고양이를 좌우로 움직여보세요!
+            <span className="highlight">방향키</span> 또는{' '}
+            <span className="highlight">터치</span>로 고양이를 좌우로
+            움직여보세요!
           </div>
         </>
       )}
 
       {result && (
-        <div className={`result-box enhanced${isGameOver ? ' game-over' : ''}`}>
+        <div
+          className={`result-box enhanced${
+            isGameOver ? ' game-over' : ''
+          }`}
+        >
           {result}
-          <button className="restart-button" onClick={restartGame}>다시 하기</button>
+          <button
+            className="restart-button"
+            onClick={restartGame}
+          >
+            다시 하기
+          </button>
         </div>
       )}
 
       {falling && (
-        <div className={`falling-options-wrapper ${fadeOut ? 'fade-out' : ''}`} style={{ transform: `translateY(${obstacleY}px)` }}>
+        <div
+          className={`falling-options-wrapper ${
+            fadeOut ? 'fade-out' : ''
+          }`}
+          style={{ transform: `translateY(${obstacleY}px)` }}
+        >
           {currentOptions.map((opt, idx) => (
             <div
-              className={`falling-option${opt === OTHER_OPTION_LABEL ? ' option-dimmed' : ''}`}
               key={idx}
+              className={`falling-option${
+                opt === OTHER_OPTION_LABEL
+                  ? ' option-dimmed'
+                  : ''
+              }`}
               style={{ flex: 1 }}
             >
               <div className="falling-content">
                 <span
                   className="option-label"
                   style={{
-                    fontSize:
-                      isMobile
-                        ? opt.length >= 6 ? '11px' :
-                          opt.length >= 5 ? '14px' :
-                            '16px'
-                        : opt.length >= 6 ? '15px' :
-                          opt.length >= 5 ? '17px' :
-                            '20px'
+                    fontSize: isMobile
+                      ? opt.length >= 6
+                        ? '11px'
+                        : opt.length >= 5
+                        ? '14px'
+                        : '16px'
+                      : opt.length >= 6
+                      ? '15px'
+                      : opt.length >= 5
+                      ? '17px'
+                      : '20px',
                   }}
                 >
                   {opt}
                 </span>
-                <div className={opt === OTHER_OPTION_LABEL ? 'option-icon-x' : 'option-icon-check'}>
+                <div
+                  className={
+                    opt === OTHER_OPTION_LABEL
+                      ? 'option-icon-x'
+                      : 'option-icon-check'
+                  }
+                >
                   <Lottie
-                    animationData={opt === OTHER_OPTION_LABEL ? xMark : checkMark}
+                    animationData={
+                      opt === OTHER_OPTION_LABEL ? xMark : checkMark
+                    }
                     loop
                     autoplay
                     style={
                       opt === OTHER_OPTION_LABEL
-                        ? { width: isMobile ? '20px' : '25px', height: isMobile ? '20px' : '25px' }
-                        : { width: isMobile ? '40px' : '60px', height: isMobile ? '40px' : '60px' }
+                        ? {
+                            width: isMobile ? '20px' : '25px',
+                            height: isMobile ? '20px' : '25px',
+                          }
+                        : {
+                            width: isMobile ? '40px' : '60px',
+                            height: isMobile ? '40px' : '60px',
+                          }
                     }
                   />
                 </div>
@@ -260,14 +335,23 @@ const GamePage: React.FC = () => {
       <div className="ground" />
       <div
         className="hero"
-        style={{ left: getHeroLeftByIndex(heroIndexRef.current, currentOptions.length) }}
+        style={{
+          left: getHeroLeftByIndex(
+            heroIndexRef.current,
+            currentOptions.length
+          ),
+        }}
       >
-        <Lottie animationData={catRun} loop style={{ width: 120, height: 120 }} />
+        <Lottie
+          animationData={catRun}
+          loop
+          style={{ width: 120, height: 120 }}
+        />
       </div>
+
       <SiteInfo />
-
     </div>
-  );
-};
+  )
+}
 
-export default GamePage;
+export default GamePage

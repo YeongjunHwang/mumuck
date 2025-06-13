@@ -1,0 +1,33 @@
+/* components/Header.module.css */
+
+.appHeader {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  color: #eee;
+  z-index: 10;
+  box-sizing: border-box;
+  border-bottom: 2px solid #444;
+  padding-bottom: 5px;
+}
+
+.logo {
+  font-size: 25px;
+  font-family: 'Do Hyeon', sans-serif;
+  color: white;
+  letter-spacing: 1px;
+}
+
+/* 필요하다면 뒤로가기 버튼 스타일도 추가 */
+.backButton {
+  background: none;
+  border: none;
+  color: #eee;
+  font-size: 18px;
+  cursor: pointer;
+}

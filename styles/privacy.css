@@ -1,0 +1,32 @@
+/* PrivacyPage.css */
+.privacy-page {
+  padding: 16px;
+  background-color: #253238;
+  color: #eee;
+  font-size: 15px;
+  line-height: 1.7; /* 줄 간격 적당히 증가 */
+  margin-top: 0;
+  max-height: none; /* max-height 제거로 내용이 잘리지 않게 */
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.privacy-page h1 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #f88c6c;
+}
+
+.privacy-page h2 {
+  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: #bab8b8;
+}
+
+.privacy-page p {
+  font-size: 12px;
+  margin-top: 10px;
+  line-height: 1.8; /* 줄 간격을 넓혀서 읽기 좋게 */
+  white-space: normal; /* 텍스트가 잘리지 않도록 보장 */
+}

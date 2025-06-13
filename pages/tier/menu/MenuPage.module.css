@@ -1,0 +1,113 @@
+/* components/MenuPage.module.css */
+.pageTitle {
+  color: #ffcc66;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 16px;
+  padding-left: 12px;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 12px 60px;
+}
+
+.menuCard {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #444;
+  padding: 12px 0;
+}
+
+.menuInfo {
+  flex: 1;
+}
+
+.tag {
+  color: #927fff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.menuTitle {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.menuDesc {
+  color: #dddddd;
+  font-size: 14px;
+  margin-top: 4px;
+  max-width: 480px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.menuReview {
+  font-size: 13px;
+  color: #888888;
+}
+
+.menuImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 10px;
+  margin-left: 12px;
+  border-radius: 12px;
+}
+
+.searchWrapper {
+  padding: 0 12px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #bbb;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  font-size: 14px;
+  border: 1px solid #7c6de6;
+  border-radius: 8px;
+  background-color: #2f3c48;
+  color: #fff;
+  outline: none;
+  box-sizing: border-box; /* padding 포함해도 100% 넘지 않음 */
+}
+
+.searchInput:focus {
+  border-color: #a694f9;
+}
+
+.searchInput::placeholder {
+  color: #bbb;
+}
+
+.introAdWrapper {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  max-width: 360px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.introAdWrapper ins.adsbygoogle {
+  min-height: 0 !important;
+  height: 90px;
+  display: block;
+}

@@ -1,0 +1,45 @@
+/* components/FoodBanner.module.css */
+.bannerWrapper {
+  position: relative;
+  width: calc(100% + 40px);
+  margin: 0 -12px;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.bannerSlide {
+  width: 100%;
+  height: 140px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  background-color: #253238;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiperSlide {
+  background: transparent !important;
+  height: 140px;
+  padding: 0 !important;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.customIndicator {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 13px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.35);
+  padding: 4px 8px;
+  border-radius: 10px;
+  z-index: 10;
+}

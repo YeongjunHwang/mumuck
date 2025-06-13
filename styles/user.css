@@ -1,0 +1,63 @@
+.user-page {
+  min-height: 100vh;
+  background-color: #253238;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Do Hyeon', sans-serif;
+  color: #333;
+}
+
+.user-box {
+  background-color: #fff;
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 30px 24px;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-box h2 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.user-box p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.user-box button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  margin-top: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Do Hyeon', sans-serif;
+  transition: background-color 0.2s ease;
+}
+
+.user-box button:first-of-type {
+  background-color: #4285f4;
+  color: white;
+}
+
+.user-box button:first-of-type:hover {
+  background-color: #3367d6;
+}
+
+.user-box button:last-of-type {
+  background-color: #fff0f0;
+  color: red;
+  border: 1px solid red;
+}
+
+.user-box button:last-of-type:hover {
+  background-color: #ffe5e5;
+}

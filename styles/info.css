@@ -1,0 +1,43 @@
+/* styles/info.css */
+.info-page {
+  padding: 16px;
+  background-color: #253238; /* 딥블루 계열 배경 */
+  color: #eee;               /* 밝은 텍스트 */
+  font-size: 15px;
+  line-height: 1.7;
+  margin-top: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: none;
+}
+
+.info-page h1 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  color: #f88c6c; /* 포인트 색상 */
+}
+
+.info-page h2 {
+  font-size: 14px;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  color: #bab8b8; /* 중간 회색 */
+}
+
+.info-page p {
+  font-size: 12px;
+  margin-top: 10px;
+  line-height: 1.8;
+  white-space: normal;
+}
+
+.info-page ul {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.info-page li {
+  font-size: 12px;
+  margin-bottom: 6px;
+  line-height: 1.8;
+}

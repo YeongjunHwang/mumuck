@@ -26,7 +26,7 @@
     "components",
     "pages",
     "css-modules.d.ts"
-  ],
+, "data/ts/tree.ts", "data/ts/pizzaBrands.ts", "data/ts/chickenBrands.ts", "data/ts/burgerBrands.ts"  ],
   "exclude": [
     "node_modules"
   ]

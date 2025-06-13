@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import FoodBanner from '../../components/FoodBanner'
 import AdvertiseBanner from '../../components/AdvertiseBanner'
 import SiteInfo from '../../components/SiteInfo/SiteInfo'
-import introAnim from './IntroData/Intro.json'
+import introAnim from '../../data/json/Intro.json'
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 

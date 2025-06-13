@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import catRun from './assets/cat-run.json';
-import checkMark from './assets/check.json';
-import xMark from './assets/xmark.json';
+import catRun from '../../data/json/cat-run.json';
+import checkMark from '../../data/json/check.json';
+import xMark from '../../data/json/xmark.json';
 import SiteInfo from '../../components/SiteInfo/SiteInfo';
-import tree from './data/tree';
+import tree from '../../data/ts/tree';
 import dynamic from 'next/dynamic'
 
 const Lottie = dynamic(() => import('lottie-react'), {

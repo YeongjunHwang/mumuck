@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import type { NextPage } from 'next'
 
-import ChickenAnim from './tierData/chicken.json'
-import PizzaAnim from './tierData/pizza.json'
-import BurgerAnim from './tierData/burger.json'
+import ChickenAnim from '../../data/json/chicken.json'
+import PizzaAnim from '../../data/json/pizza.json'
+import BurgerAnim from '../../data/json/burger.json'
 import SiteInfo from '../../components/SiteInfo/SiteInfo'
 import dynamic from 'next/dynamic'
 

@@ -3,6 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/my": "pages/my.js",
-  "/my/login": "pages/my/login.js"
+  "/game": "pages/game.js",
+  "/tier": "pages/tier.js",
+  "/tier/menu/Chicken": "pages/tier/menu/Chicken.js"
 }

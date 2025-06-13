@@ -1,4 +1,4 @@
-import { pizzaBrands } from './pizzaBrands';
+import { pizzaBrands } from '../../../data/ts/pizzaBrands';
 import MenuPage from './MenuPage';
 
 const Pizza = () => {

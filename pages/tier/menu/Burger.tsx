@@ -1,5 +1,5 @@
 import MenuPage from './MenuPage';
-import { burgerBrands } from './burgerBrands';
+import { burgerBrands } from '../../../data/ts/burgerBrands';
 
 const Burger = () => {
   return (

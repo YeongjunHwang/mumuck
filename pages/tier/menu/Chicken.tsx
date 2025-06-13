@@ -1,5 +1,5 @@
 import MenuPage from './MenuPage';
-import { chickenBrands } from './chickenBrands';
+import { chickenBrands } from '../../../data/ts/chickenBrands';
 
 const Chicken = () => {
   return (

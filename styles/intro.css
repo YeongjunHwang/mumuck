@@ -1,4 +1,5 @@
-.intro-page {
+/* styles/intro.module.css */
+.introPage {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,19 +11,19 @@
   box-sizing: border-box;
 }
 
-.intro-content {
+.introContent {
   text-align: center;
   padding: 30px 20px;
   margin-top: 15px;
-  background-color: #2e3b44;  /* ✅ 배경 박스 컬러 */
-  border-radius: 16px;        /* ✅ 둥근 모서리 */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ✅ 그림자 효과 */
-  width: calc(100%); /* 양쪽으로 확장 */
+  background-color: #2e3b44;  /* 배경 박스 컬러 */
+  border-radius: 16px;        /* 둥근 모서리 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  width: 100%; /* 양쪽으로 확장 */
   max-width: 480px;
   animation: fadeInUp 1s ease;
 }
 
-.intro-icon-lottie {
+.introIconLottie {
   display: inline-block;
   width: 36px;
   height: 36px;
@@ -31,10 +32,10 @@
   margin-bottom: 5px;
 }
 
-h1 {
+.introTitle {
   font-size: 26px;
   font-weight: 700;
-  margin-top : -20px;
+  margin-top: -20px;
   margin-bottom: 10px;
   color: #fefefe;
   font-family: 'Do Hyeon', sans-serif;
@@ -47,7 +48,14 @@ h1 {
   margin-top: 5px;
 }
 
-.start-btn {
+.introDescription {
+  font-size: 16px;
+  font-family: 'Do Hyeon', sans-serif;
+  color: white;
+  margin-top: 5px;
+}
+
+.startBtn {
   padding: 14px 30px;
   font-size: 16px;
   font-weight: 600;
@@ -62,7 +70,7 @@ h1 {
   margin-bottom: -25px;
 }
 
-.start-btn:hover {
+.startBtn:hover {
   background-color: #fa9d82;
   transform: translateY(-1px);
 }

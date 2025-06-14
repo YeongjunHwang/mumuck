@@ -1,4 +1,3 @@
-// components/Footer.tsx
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -31,13 +30,15 @@ const Footer: React.FC = () => {
       {tabs.map(({ label, icon: Icon, path }) => {
         const isActive = pathname === path
         return (
-          <Link
-            key={path}
-            href={path}
-            className={`${styles['footer-item']} ${isActive ? styles.active : ''}`}
-          >
-            <Icon size={24} />
-            <span className={styles['footer-label']}>{label}</span>
+          <Link key={path} href={path} legacyBehavior>
+            <a
+              className={`${styles.footerItem} ${
+                isActive ? styles.active : ''
+              }`}
+            >
+              <Icon size={24} className={styles.footerIcon} />
+              <span className={styles.footerLabel}>{label}</span>
+            </a>
           </Link>
         )
       })}

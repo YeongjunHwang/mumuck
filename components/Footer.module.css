@@ -1,3 +1,4 @@
+/* components/Footer.module.css */
 .footer {
   position: fixed;
   bottom: 0;
@@ -16,7 +17,7 @@
   box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.footer-item {
+.footerItem {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,19 +27,19 @@
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.footer-item:hover {
+.footerItem:hover {
   color: #f88c6c;
   transform: translateY(-2px);
 }
 
-.footer-item.active {
+.active {
   color: #ffffff;
 }
 
-.footer-icon {
+.footerIcon {
   margin-bottom: 4px;
 }
 
-.footer-label {
+.footerLabel {
   font-size: 11px;
 }

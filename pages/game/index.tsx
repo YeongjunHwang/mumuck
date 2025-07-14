@@ -345,7 +345,7 @@ const GamePage: React.FC = () => {
         <Lottie
           animationData={catRun}
           loop
-          style={{ width: 120, height: 120 }}
+          style={{ width: isMobile ? 100 : 130, height: isMobile ? 100 : 130 }}
         />
       </div>
 

@@ -1,11 +1,16 @@
 // pages/game/index.tsx
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react'
 import dynamic from 'next/dynamic'
 
 import catRun from '../../data/json/cat-run.json'
 import checkMark from '../../data/json/check.json'
 import xMark from '../../data/json/xmark.json'
-import SiteInfo from '../../components/SiteInfo/SiteInfo'
 import tree from '../../data/ts/tree'
 
 const Lottie = dynamic(() => import('lottie-react'), {
@@ -19,6 +24,10 @@ interface StepNode {
 }
 
 const OTHER_OPTION_LABEL = '다른 메뉴'
+const NO_MENU_RESULT = '오늘은 굶기'
+
+const getNaverMapSearchUrl = (menu: string) =>
+  `https://map.naver.com/p/search/${encodeURIComponent(`${menu} 맛집`)}`
 
 const getHeroLeftByIndex = (index: number, total: number) => {
   const base = 100 / total
@@ -40,28 +49,64 @@ const getRandomFromArray = (
   return shuffled.slice(0, count)
 }
 
+const getFreshFinalOptions = (pool: string[], used: Set<string>) => {
+  const remaining = pool.filter(item => !used.has(item))
+  if (remaining.length <= 2) return []
+
+  const picked = getRandomFromArray(remaining, Math.min(2, remaining.length))
+  picked.forEach(item => used.add(item))
+
+  return remaining.length > picked.length
+    ? getRandomFromArray([...picked, OTHER_OPTION_LABEL], picked.length + 1)
+    : picked
+}
+
 const GamePage: React.FC = () => {
   // 서버 사이드 렌더링 시 window 접근 방지
   const [isMobile, setIsMobile] = useState(false)
   const [currentNode, setCurrentNode] = useState<StepNode>(tree)
   const [obstacleY, setObstacleY] = useState(-200)
   const [result, setResult] = useState('')
+  const [resultMenu, setResultMenu] = useState('')
   const [currentOptions, setCurrentOptions] = useState<string[]>(tree.options)
   const [countdown, setCountdown] = useState(3)
   const [gameStarted, setGameStarted] = useState(false)
   const [falling, setFalling] = useState(true)
   const [readyNextStep, setReadyNextStep] = useState(false)
   const [fadeOut, setFadeOut] = useState(false)
+  const [heroIndex, setHeroIndex] = useState(1)
+  const [round, setRound] = useState(1)
+  const [pickHistory, setPickHistory] = useState<string[]>([])
+  const [feedback, setFeedback] = useState('떨어지는 선택지 중 오늘 끌리는 쪽으로 움직여보세요')
+  const [impact, setImpact] = useState(false)
 
   const heroIndexRef = useRef(1)
   const intervalRef = useRef<number | null>(null)
   const finalPoolRef = useRef<string[]>([])
   const usedOptionsRef = useRef<Set<string>>(new Set())
+  const containerRef = useRef<HTMLDivElement>(null)
+  /** 기준 높이 480px일 때 장애물 정지 Y = 355 */
+  const collisionYRef = useRef(355)
+
+  useLayoutEffect(() => {
+    const el = containerRef.current
+    if (!el) return
+    const syncCollision = () => {
+      const h = el.clientHeight
+      if (h > 0) {
+        collisionYRef.current = Math.round((h * 355) / 480)
+      }
+    }
+    syncCollision()
+    const ro = new ResizeObserver(syncCollision)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
 
   // 클라이언트에서만 window.innerWidth 사용
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 480)
+      setIsMobile(window.innerWidth <= 430)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile)
@@ -70,13 +115,21 @@ const GamePage: React.FC = () => {
 
   const moveHero = useCallback(
     (direction: 'left' | 'right') => {
-      heroIndexRef.current =
+      const nextIndex =
         direction === 'left'
           ? Math.max(0, heroIndexRef.current - 1)
           : Math.min(currentOptions.length - 1, heroIndexRef.current + 1)
+      heroIndexRef.current = nextIndex
+      setHeroIndex(nextIndex)
     },
     [currentOptions.length]
   )
+
+  const moveHeroTo = useCallback((index: number) => {
+    const nextIndex = Math.max(0, Math.min(currentOptions.length - 1, index))
+    heroIndexRef.current = nextIndex
+    setHeroIndex(nextIndex)
+  }, [currentOptions.length])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -91,9 +144,12 @@ const GamePage: React.FC = () => {
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
       if (!gameStarted || !falling) return
+      const board = containerRef.current
+      if (!board) return
+      const rect = board.getBoundingClientRect()
       const touchX = e.touches[0].clientX
-      const centerX = window.innerWidth / 2
-      moveHero(touchX > centerX ? 'right' : 'left')
+      const midX = rect.left + rect.width / 2
+      moveHero(touchX > midX ? 'right' : 'left')
     }
     window.addEventListener('touchstart', handleTouchStart)
     return () => window.removeEventListener('touchstart', handleTouchStart)
@@ -105,30 +161,40 @@ const GamePage: React.FC = () => {
     setFadeOut(false)
     intervalRef.current = window.setInterval(() => {
       setObstacleY(prev => {
-        const next = prev + 10
-        if (next >= 355) {
+        const speed = Math.min(18, 8 + Math.floor(round / 2))
+        const next = prev + speed
+        const hitY = collisionYRef.current
+        if (next >= hitY) {
           clearInterval(intervalRef.current!)
           setFadeOut(true)
+          setImpact(true)
+          setTimeout(() => setImpact(false), 240)
           setTimeout(() => setReadyNextStep(true), 200)
-          return 355
+          return hitY
         }
         return next
       })
     }, 60)
 
     return () => clearInterval(intervalRef.current!)
-  }, [falling, result, gameStarted])
+  }, [falling, result, gameStarted, round])
 
   const restartGame = () => {
     setCurrentNode(tree)
     setObstacleY(-200)
     setResult('')
+    setResultMenu('')
     setCurrentOptions(tree.options)
     setCountdown(3)
     setGameStarted(false)
     setFalling(true)
     setReadyNextStep(false)
     setFadeOut(false)
+    setHeroIndex(1)
+    setRound(1)
+    setPickHistory([])
+    setFeedback('떨어지는 선택지 중 오늘 끌리는 쪽으로 움직여보세요')
+    setImpact(false)
     heroIndexRef.current = 1
     finalPoolRef.current = []
     usedOptionsRef.current.clear()
@@ -140,29 +206,35 @@ const GamePage: React.FC = () => {
     setFalling(false)
 
     const selected = currentOptions[heroIndexRef.current]
+    const isOtherOption = selected === OTHER_OPTION_LABEL
+
+    setRound(prev => prev + 1)
+    if (!isOtherOption) {
+      setPickHistory(prev => [...prev, selected].slice(-3))
+    }
+    setFeedback(
+      isOtherOption
+        ? '후보를 다시 섞습니다. 조금 더 끌리는 메뉴를 찾아볼게요'
+        : `${selected} 쪽으로 좁혀볼게요`
+    )
 
     if (
       finalPoolRef.current.length > 0 &&
-      selected === OTHER_OPTION_LABEL
+      isOtherOption
     ) {
-      const exclude = usedOptionsRef.current
-      const remaining = finalPoolRef.current.filter(
-        item => !exclude.has(item)
+      const newOptions = getFreshFinalOptions(
+        finalPoolRef.current,
+        usedOptionsRef.current
       )
 
-      if (remaining.length < 2) {
-        setResult('GAME OVER')
+      if (newOptions.length === 0) {
+        setResult(NO_MENU_RESULT)
         return
       }
 
-      const options = getRandomFromArray(remaining, 2)
-      options.push(OTHER_OPTION_LABEL)
-      const newOptions = getRandomFromArray(options, 3)
-      newOptions.forEach(
-        opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt)
-      )
       setCurrentOptions(newOptions)
       setCurrentNode({ options: newOptions })
+      moveHeroTo(Math.floor(newOptions.length / 2))
       setObstacleY(-200)
       setTimeout(() => setFalling(true), 10)
       return
@@ -170,9 +242,12 @@ const GamePage: React.FC = () => {
 
     const nextNode = currentNode.next?.[selected]
     if (!nextNode) {
+      if (!isOtherOption) {
+        setResultMenu(selected)
+      }
       setResult(
-        selected === OTHER_OPTION_LABEL
-          ? 'GAME OVER'
+        isOtherOption
+          ? NO_MENU_RESULT
           : `오늘은 ${selected}!`
       )
       return
@@ -184,27 +259,23 @@ const GamePage: React.FC = () => {
       )
       usedOptionsRef.current.clear()
 
-      const exclude = usedOptionsRef.current
-      const remaining = finalPoolRef.current.filter(
-        item => !exclude.has(item)
+      const newOptions = getFreshFinalOptions(
+        finalPoolRef.current,
+        usedOptionsRef.current
       )
 
-      if (remaining.length < 2) {
-        setResult('GAME OVER')
+      if (newOptions.length === 0) {
+        setResult(NO_MENU_RESULT)
         return
       }
 
-      const options = getRandomFromArray(remaining, 2)
-      options.push(OTHER_OPTION_LABEL)
-      const newOptions = getRandomFromArray(options, 3)
-      newOptions.forEach(
-        opt => opt !== OTHER_OPTION_LABEL && usedOptionsRef.current.add(opt)
-      )
       setCurrentOptions(newOptions)
       setCurrentNode({ options: newOptions })
+      moveHeroTo(Math.floor(newOptions.length / 2))
     } else {
       setCurrentOptions(nextNode.options)
       setCurrentNode(nextNode)
+      moveHeroTo(Math.floor(nextNode.options.length / 2))
     }
 
     setObstacleY(-200)
@@ -215,6 +286,7 @@ const GamePage: React.FC = () => {
     result,
     currentNode,
     currentOptions,
+    moveHeroTo,
   ])
 
   useEffect(() => {
@@ -229,10 +301,20 @@ const GamePage: React.FC = () => {
     return () => clearTimeout(timer)
   }, [countdown])
 
-  const isGameOver = result === 'GAME OVER'
+  const isGameOver = result === NO_MENU_RESULT
+  const speedLevel = Math.min(7, 1 + Math.floor(round / 2))
+  const historyLabel =
+    pickHistory.length > 0 ? pickHistory.join(' > ') : '아직 선택 전'
 
   return (
-    <div className="game-container">
+    <div className="game-wrap">
+      <div className="game-hud" aria-label="게임 현황">
+        <span>선택 {round}</span>
+        <span>속도 {speedLevel}</span>
+        <span>{historyLabel}</span>
+      </div>
+      <div className="game-feedback">{feedback}</div>
+      <div ref={containerRef} className="game-container">
       {!gameStarted && (
         <>
           <div className="countdown-overlay">
@@ -255,6 +337,16 @@ const GamePage: React.FC = () => {
           }`}
         >
           {result}
+          {resultMenu && (
+            <a
+              className="map-link-button"
+              href={getNaverMapSearchUrl(resultMenu)}
+              target="_blank"
+              rel="noreferrer"
+            >
+              네이버지도에서 근처 보기
+            </a>
+          )}
           <button
             className="restart-button"
             onClick={restartGame}
@@ -278,6 +370,7 @@ const GamePage: React.FC = () => {
                 opt === OTHER_OPTION_LABEL
                   ? ' option-dimmed'
                   : ''
+              }${impact && idx === heroIndex ? ' option-selected' : ''
               }`}
               style={{ flex: 1 }}
             >
@@ -332,12 +425,25 @@ const GamePage: React.FC = () => {
         </div>
       )}
 
+      {impact && (
+        <div
+          className="selection-burst"
+          style={{
+            left: getHeroLeftByIndex(heroIndex, currentOptions.length),
+          }}
+        >
+          <span />
+          <span />
+          <span />
+        </div>
+      )}
+
       <div className="ground" />
       <div
-        className="hero"
+        className={`hero${impact ? ' hero-picked' : ''}`}
         style={{
           left: getHeroLeftByIndex(
-            heroIndexRef.current,
+            heroIndex,
             currentOptions.length
           ),
         }}
@@ -345,11 +451,11 @@ const GamePage: React.FC = () => {
         <Lottie
           animationData={catRun}
           loop
-          style={{ width: isMobile ? 100 : 130, height: isMobile ? 100 : 130 }}
+          style={{ width: isMobile ? 100 : 145, height: isMobile ? 100 : 145 }}
         />
       </div>
 
-      <SiteInfo />
+      </div>
     </div>
   )
 }
